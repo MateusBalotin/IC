@@ -1,5 +1,5 @@
-# Undergraduate Research Project
 
+<h1> Projeto de Iniciação Científica </h1>
 This repository contain 2 projects about Reinforcement Learning, more specifically of Q-Learning, which I did with my mentor Lucas Pedroso.
 
 <h1> Cartpole </h1>
@@ -123,8 +123,11 @@ A função valor estado para política a <b>&pi;</b>, denotada como <b>v<sub>&pi
 
 Formalmente, o valor de um estado sobre a política <b>&pi;</b> é o <b>retorno esperado</b> de quando começamos no estado <b>s</b> no tempo <b>t</b> e depois seguimos a política <b>&pi;</b>. Matematicamente definimos <b>v<sub>&pi;</sub>(s)</b> como: <br><br>
 
-Fórmula <br><br>
-
+<div center="align">
+  $$ \Large v_{\pi}(s) = E_{\pi} \left [ G_{t} | S_{t} = s \right] \\ $$ 
+ 
+  $$ \Large v_{\pi}(s) = E_{\pi} \left [ \sum_{k=0}^\infty \gamma^{k} R_{t+k+1} | S_{t} = s \right ] $$
+</div>
 
 De forma similiar podemos definir a Função valor-ação.
 </p>
@@ -137,7 +140,9 @@ De forma similiar podemos definir a Função valor-ação.
  
  Formalmente, podemos definir o valor de uma ação <b>a</b> em um estado <b>s</b> sobre a política <b>&pi;</b> como o <b> retorno esperado </b> de quando começamos no estado <b>s</b> no tempo <b>t</b>, tomando uma ação <b>a</b> e seguindo a política <b>&pi;</b>. Matematicamente podemos definir <b>q<sub>&pi;</sub>(s,a)</b> como: <br><br>
  
- Fórmula: <br><br>
+  $$\Large q_{\pi}(s,a) = E_{\pi} \left [ G_{t} | S_{t} = s, A_{t} = a \right] \\ $$ 
+ 
+  $$\Large q_{\pi}(s,a) = E_{\pi} \left [ \sum_{k=0}^\infty \gamma^{k} R_{t+k+1} | S_{t} = s, A_{t} = a \right ] $$
  
 Temos nomes especiais para essa função e o retorno esperado:
  
@@ -165,16 +170,16 @@ Agora que temos as nossas métricas, um mapa que contém as probabilidades de qu
  <p>
 De uma forma natural, podemos definir a política ótima <b>&pi;</b> olhando o retorno esperado. Ou seja, <b>&pi;</b> &ge; <b>&pi;'</b>
  se o <b>retorno esperado</b> de <b>&pi;</b> é maior que o <b> retorno esperado</b> de <b>&pi;'</b> para todos os estados. Matematicamente: <br><br>
- 
-<u align="center"> <b>&pi; &ge; pi;'se e somente se v<sub>&pi;</sub>(s) &ge; v<sub>&pi;'</sub>(s) para todo s &in; S </b> <br><br>
-   
+<div align="center">
+<u align="center"> <b>&pi; &ge; pi se e somente se v<sub>&pi;</sub>(s) &ge; v<sub>&pi;'</sub>(s) para todo s &in; S </b> <br><br>
+</div>
    Lembre-se que a nossa função <b>v<sub>&pi;</sub>(s) </b> volta o retorno esperado quando começamos no estado <b>s</b> e seguimos a política <b>&pi;</b>.<br> Simplesmente chamamos de política ótima aquela que é maior ou igual a todas as outras políticas.
     </p>
  <h3> <b>Função valor-estado ótima</b></h3>
  <p>
  Vamos pegar o máximo de todas as nossas funções valor-ação, <b>v<sub>&pi;</sub>(s)</b>, e esse será a nossa função ótima:<br><br>
  
- Fórmula: <br><br>
+ $$\Large v_{*}(s) = \max_{\pi}\ v_{\pi}(s)$$
  
   Isso ocorre para todo <b>s</b> &in; S. Em outras palavras, <b>v<sub>*</sub></b> gera o maior retorno esperado possível para qualquer ação <b>s</b> sobre qualquer política <b>&pi;</b>.
  
@@ -185,29 +190,172 @@ De uma forma natural, podemos definir a política ótima <b>&pi;</b> olhando o r
  
  <p>
   De forma análoga ao que fizemos, vamos definir a nossa função valor-ação ótima como simplesmente o máximo das funções valor-ação. <br><br>
-  Fórmula: <br><br>
+ 
+  $$ \Large q_{\ast}(s,a) = \max_{\pi}\ q_{\pi}(s,a)$$
   
-  para todo <b>s</b> &in; em <b>S</b> e todo <b>a</b> &in; <b>A</b>. Em outras palavras, <b>q<sub>*</sub></b> gera o maior retorno esperado possível para qualquer par ação-estado <b>(s,a)</b> sobre qualquer política <b>&pi;</b>.<br><br>
+  para todo <b>s</b> &in; em <b>S</b> e todo <b>a</b> &in; <b>A</b>. Em outras palavras, $\large q_{\ast}$ gera o maior retorno esperado possível para qualquer par ação-estado <b>(s,a)</b> sobre qualquer política <b>&pi;</b>.<br><br>
  
  Como vimos antes, a função <b>q<sub>&pi;</sub></b> nos dá o maior retorno esperado para qualquer par de ação <b>(s,a)</b> seguindo uma política <b>&pi;</b> qualquer.<br><br>
  
  A função <b>pi<sub>*</sub></b> gera o maior retorno esperado para qualquer par de estado-ação, <b>(s,a)</b>, olhando para todas as políticas <b>&pi;</b>. <br><br>
  
- Uma propriedade sensacional que <b>q<sub>*</sub></b> é que ela deve satisfazer a equação ótima de <b>Bellman</b>. <br><br>
+ Uma propriedade sensacional que <b>q<sub>*</sub></b> possui é que ela deve satisfazer a equação ótima de <b>Bellman</b>. <br><br>
  
- Fórmula: <br><br>
+ $$ \Large  q_{\ast}(s,a) = E \left[ {\color{WildStrawberry}R_{t+1} } + {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') }\right]$$
  
  A equação de Bellman nos diz que para qualquer par de estado-ação, <b>(s,a)</b>, no tempo <b>t</b> o <b> retorno esperado, q<sub>*</sub>(s,a)</b> será:
- <ul>
-  <li> <b>R<sub>t+1</sub> </b>  &rarr;</li>
-  <li>                          &rarr;</li>
-  <li>                          &rarr;</li>
-  
-  </ul>
-   <\p>
  
+ Esta frase usa "delimitadores "$" para mostrar matemática inline: $\sqrt{3x-1}+(1+x)^2$
+ 
+ $ {\color{WildStrawberry}R_{t+1} } $  <br>
+ 
+ $$ {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') } $$
+ 
+ <ul>
+  <li> $$ {\color{WildStrawberry}R_{t+1} }$$  &rarr; Recompensa de tomar a ação <b>a</b> no estado <b>s</b></li> 
+  <li> $$ {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') } $$ &rarr;O máximo do retorno esperado descontado para qualquer par de estado-ação <b>(s',a')</b></li> 
+  </ul>
+  
+ 
+ Note que como estamos seguindo a política ótima, o proximo estado <b>s'</b> vai ser o estado ótimo onde podemos escolher a melhor ação <b>a'</b> em <b>t + 1</b>. <br><br>
+ 
+</p> 
+ 
+ <h1> Q-Tables </h1>
+ <p>
+ 
+Imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as ações que ele pode tomar são  <b> &uarr; &darr; &rarr; &larr;.</b><br>
+</p>
+<p>
+ 
+ Por simplicidade, quando o agente chegar na frente de uma porta, basta ele tomar a ação &uarr; para abrir a porta. <br>
+ 
+ O nosso jogo pode ser representado por essa tabela. <br>
+ 
+ <table class="content-table">
+  <thead>
+    <tr>
+     <th> </th>
+      <th>Cima</th>
+      <th>Baixo</th>
+      <th>Direta</th>
+      <th>Esquerda</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Vazio 1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Vazio 2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Vazio 3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Vazio 4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Vazio 5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Vazio 6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Porta 1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Porta 2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Porta 3</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+ 
+ 
+Inicialmente o agente não tem ideia de qual ação tomar ou de qual porta abrir, ele está em um estado em branco. Porém, com o tempo, ele irá adquirir Q-Valores para os pares de estado-ação <b>(s,a)</b>. Assim, ele saberá qual a melhor rota seguir para maximizar sua recompensa.<br>
+ 
+ <ul>
+  <li> 30 pontos o agente ganha o jogo. </li>
+  <li> -30 pontos ele perde o jogo.   </li>
+ </ul>
  
 
+<div align="center">
+ <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/doors.jpg"> 
+ </div>
+ <br>
+Vamos supor que a primeira ação do agente é abrir a porta do meio. <br><br>
+<div align="center">
+ <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/room_minus10.jpg">
+ </div>
+<br>
+Como podemos observar, ele recebeu <b>-10 pontos</b> de recompensa. Logo, faz sentido ele escolher outras portas além dessas. <br>
+
+Agora ele escolheu a porta 1. <br>
+<div align="center">
+ <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/room10.jpg">
+ </div>
+<br>
+Muito bom!! Ele recebeu uma recompensa de <b>+10 pontos</b>, então ele só precisa continuar escolhendo a porta 1 para ganhar. Mas será que essa é a maneira mais eficiente de ele jogar? <br>
+
+Vamos dar uma bisbilhotada no que a porta 3 está escondendo.
+
+<div align="center">
+ <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/room30.jpg">
+ </div>
+<br>
+Olha só! Atrás da porta 3 tem com uma recompensa incrível de <b>+30 pontos</b>. Se o agente tivesse escolhido a porta 3 desde o começo ele teria alcançando seu objetivo com 1 ação. <br>
+
+Como podemos ver, seria bom que o nosso agente explorasse o ambiente, já que como vimos outros caminhos podem ter recompensas melhores. Caso ele não explorasse o ambiente e so escolhesse a porta 1, ele nunca teria achado a recompensa da porta 3.<br>
+
+ 
+ </p>
+ 
+ <h1> Exploration vs Exploitation </h1>
+<p>
+ 
+ 
+ 
+ </p>
+ 
 
 
 
