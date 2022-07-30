@@ -219,27 +219,38 @@ Com $\large {\color{CornflowerBlue} T} = {\color{CornflowerBlue}\gamma \max_{a'}
  <p>
  
 Imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as ações que ele pode tomar são  $$\Large {\color{white} \uparrow \ \downarrow \ \rightarrow \ \leftarrow }$$
-</p>
-<p>
 
  <div align="center">
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/tables2.jpg" title="Jogo de abrir 3 portas"> 
  </div>
  <br>
- 
- Por simplicidade, quando o agente chegar na frente de uma porta, basta ele tomar a ação $\Large {\color{white} \uparrow}$ para abrir a porta. <br>
- 
+
  Note que podemos ver esses quadrados da tabela como estados. <br>
  
  <div align="center">
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/estadostable.jpg" title="Estados da tabela"> 
  </div>
-  <br>
+ 
+ <br>
+ 
  <div align="center">
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/estaadoscomportas.jpg" title="Estados com as portas"> 
  </div>
-  <br>
- O nosso jogo pode ser representado por essa tabela. <br>
+ <br>
+ 
+ 
+O objetivo do jogo é que o agente acumule pontos.
+
+ <ul>
+  <li> 30 pontos o agente ganha o jogo. </li>
+  <li> -30 pontos ele perde o jogo.   </li>
+ </ul>
+ 
+Inicialmente o agente é como um bebê que acabou de nascer, ele não sabe o objetivo do jogo, qual é a melhor ação ou quais as recompensas cada estado tem. Porém, conforme ele vai <b> explorando </b> o ambiente, ele vai descobrindo tudo isso! <br>
+
+Dessa forma ele consegue achar uma rota onde ele maximiza sua recompensa.<br>
+
+O nosso jogo pode ser representado por essa Q-Table, onde temos todos os estados e ações possíveis. <br>
  
  <table class="content-table">
   <thead>
@@ -253,42 +264,14 @@ Imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as
   </thead>
   <tbody>
     <tr>
-      <td>Vazio 1</td>
+      <td>Estado 1</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
     </tr>
  <tr>
-      <td>Vazio 2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Vazio 3</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Vazio 4</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Vazio 5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Vazio 6</td>
+      <td>Estado 2</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -302,7 +285,35 @@ Imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as
       <td>0</td>
     </tr>
  <tr>
+      <td>Estado 4</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Estado 5</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Estado 6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
       <td>Porta 2</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+ <tr>
+      <td>Estado 8</td>
       <td>0</td>
       <td>0</td>
       <td>0</td>
@@ -317,40 +328,33 @@ Imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as
     </tr>
   </tbody>
 </table>
- 
- 
-Inicialmente o agente não tem ideia de qual ação tomar ou de qual porta abrir, ele está em um estado em branco. Porém, com o tempo, ele irá adquirir Q-Valores para os pares de estado-ação <b>(s,a)</b>. Assim, ele saberá qual a melhor rota seguir para maximizar sua recompensa.<br>
- 
- <ul>
-  <li> 30 pontos o agente ganha o jogo. </li>
-  <li> -30 pontos ele perde o jogo.   </li>
- </ul>
- 
 
-<div align="center">
- <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/doors.jpg"> 
- </div>
- <br>
-Vamos supor que a primeira ação do agente é abrir a porta do meio. <br><br>
+
+Vamos supor que a primeira ação do agente é abrir a porta do meio. <br>
+
 <div align="center">
  <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/room_minus10.jpg">
  </div>
 <br>
+
 Como podemos observar, ele recebeu <b>-10 pontos</b> de recompensa. Logo, faz sentido ele escolher outras portas além dessas. <br>
 
 Agora ele escolheu a porta 1. <br>
+
 <div align="center">
  <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/room10.jpg">
  </div>
-<br>
+ <br>
+ 
 Muito bom!! Ele recebeu uma recompensa de <b>+10 pontos</b>, então ele só precisa continuar escolhendo a porta 1 para ganhar. Mas será que essa é a maneira mais eficiente de ele jogar? <br>
 
-Vamos dar uma bisbilhotada no que a porta 3 está escondendo.
+Vamos dar uma bisbilhotada no que a porta 3 está escondendo.<br>
 
 <div align="center">
  <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/room30.jpg">
  </div>
 <br>
+
 Olha só! Atrás da porta 3 tem com uma recompensa incrível de <b>+30 pontos</b>. Se o agente tivesse escolhido a porta 3 desde o começo ele teria alcançando seu objetivo com 1 ação. <br>
 
 Como podemos ver, seria bom que o nosso agente explorasse o ambiente, já que como vimos outros caminhos podem ter recompensas melhores. Caso ele não explorasse o ambiente e so escolhesse a porta 1, ele nunca teria achado a recompensa da porta 3.<br>
