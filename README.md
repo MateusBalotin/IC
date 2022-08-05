@@ -397,7 +397,7 @@ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (0) + 0.8 -(1) $$
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = -0.8 $$
 
-Logo, o nosso Q-Valor para o par estado-ação $(s,a) = (\textrm{Estado 1}, {\color{white} \downarrow}$ é -0.8. <br>
+Logo, o nosso Q-Valor para o par estado-ação $(s,a) = (\textrm{Estado 1}, {\color{white} \downarrow})$ é -0.8. <br>
 
 Agora vamos repetir esse processo até o jogo acabar ou podemos definir um limite de passos máximo que o jogador pode ter. <br>
 
