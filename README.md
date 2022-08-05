@@ -168,12 +168,12 @@ Agora que temos as nossas métricas, um mapa que contém as probabilidades de qu
  </p>
 <h3> <b>Política ótima</b></h3>
  <p>
-De uma forma natural, podemos definir a política ótima $\large{\color{RubineRed}\pi}$ olhando o retorno esperado. Ou seja, $\large {\color{RubineRed}\pi}$ $\large\ge$ $\large{\color{Goldenrod} \pi'}$ se o <b>retorno esperado</b> de $\large {\color{RubineRed}\pi}$ é maior que o <b> retorno esperado</b> de $\large{\color{Goldenrod} \pi'}$  para todos os estados $s \in S$. Matematicamente: <br><br>
+De uma forma natural, podemos definir a política ótima $\large pi$ olhando o retorno esperado. Ou seja, $\large \pi$ $\large\ge$ $\large \pi'$ se o <b>retorno esperado</b> de $\large \pi$ é maior que o <b> retorno esperado</b> de $\large \pi'$  para todos os estados $s \in S$. Matematicamente: <br><br>
  
- $$\large {\color{RubineRed}\pi} \ge {\color{Goldenrod} \pi'} \ \text{se e somente se} \ {\color{RubineRed} v_{\pi}(s)} \ge {\color{Goldenrod} v_{\pi'}(s)} \ \text{para todo} \ s \in S$$
+ $$\large \pi \ge \pi' \ \text{se e somente se} \  v_{\pi}(s) \ge  v_{\pi'}(s) \ \text{para todo} \ s \in S$$
  
-   Lembre-se que a nossa função $\large{\color{BurntOrange} v_{\pi}}$ volta o retorno esperado quando começamos no estado <b>s</b> e seguimos a política <b>&pi;</b>.<br> Simplesmente chamamos de política ótima aquela que é maior ou igual a todas as outras políticas.
-    </p>
+   Lembre-se que a nossa função $\large v_{\pi}$ volta o retorno esperado quando começamos no estado <b>s</b> e seguimos a política <b>&pi;</b>.<br> Simplesmente chamamos de política ótima aquela que é maior ou igual a todas as outras políticas.
+ </p>
  <h3>$\large {\color{OrangeRed}\text{Função valor-estado ótima}}$</h3>
  <p>
  Vamos pegar o máximo de todas as nossas funções valor-ação, <b>v<sub>&pi;</sub>(s)</b>, e esse será a nossa função ótima:<br><br>
@@ -215,11 +215,19 @@ Com $\large {\color{CornflowerBlue} T} = {\color{CornflowerBlue}\gamma \max_{a'}
  
 </p> 
  
- <h1> Q-Tables </h1>
+ <h1> Q-Learning </h1>
  <p>
  
-Imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as ações que ele pode tomar são  $$\Large {\color{white} \uparrow \ \downarrow \ \rightarrow \ \leftarrow }$$
+ Com tudo isso que vimos, temos que uma forma de achar a política ótima é achar os melhores Q-Valores para cada par de estado-ação, ou seja, o maior retorno esperado descontado para qualquer par de estado-ação. <br>
+ 
+ Com os Q-Valores em mãos, basta atualizá-los iterativamente com a equação de Bellman até que convergam!! <br>
+ 
+ Mas como podemos interprar isso matematicamente e entender o conceito mais claramente? <br>
+ 
+Para isso imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as ações que ele pode tomar são  $$\Large {\color{white} \uparrow \ \downarrow \ \rightarrow \ \leftarrow }$$ <br>
 
+ O jogo é bem simples, são alguns quadrados onde o jogador pode se mover. <br>
+ 
  <div align="center">
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/tables2.jpg" title="Jogo de abrir 3 portas"> 
  </div>
@@ -230,8 +238,8 @@ Imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as
  <div align="center">
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/estadostable.jpg" title="Estados da tabela"> 
  </div>
- 
  <br>
+ Colocando nossas portas nessa tabela, temos: <br><br>
  
  <div align="center">
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/estaadoscomportas.jpg" title="Estados com as portas"> 
@@ -239,12 +247,26 @@ Imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as
  <br>
  
  
-O objetivo do jogo é que o agente acumule pontos.
+O jogo funciona assim: <br>
 
- <ul>
-  <li> 30 pontos o agente ganha o jogo. </li>
-  <li> -30 pontos ele perde o jogo.   </li>
- </ul>
+<ul>
+<li>$\large \textrm{Objetivo}$ $\rightarrow$ Somar 30 pontos</li>
+</ul>
+<br>
+
+| Recompensas | Pontuação |
+| --- | --- |
+| Estados | $$0$$ |
+| Portas | $${\color{Green}+10} \ \ \textrm{ou} \ \ {\color{Red}-10}$$|
+
+<br>
+
+$\large \textrm{Regras}$
+<ol>
+ <li> A movimentação só poder ser feita normalmente, ou seja, se estiver no Estado 1 e fizer a ação  $\Large {\color{white} \uparrow}$ você não saí do lugar, as únicas ações possíveis para se movimentar são  $\Large {\color{white} \downarrow \ \rightarrow }$.</li>
+ <li> É possível ficar entrando e saindo de uma porta. Por exemplo, no Estado 2 ao tomar a ação $\Large {\color{white} \rightarrow }$  você abre a porta. Para abrí-la novamente basta voltar uma casa e avançar, isto é, tomar as ações $\Large {\color{white}  \leftarrow \ \rightarrow}$ ou $\Large {\color{white} \downarrow \ \uparrow }$.</li>
+ </ol>
+ <br>
  
 Inicialmente o agente é como um bebê que acabou de nascer, ele não sabe o objetivo do jogo, qual é a melhor ação ou quais as recompensas cada estado tem. Porém, conforme ele vai <b> explorando </b> o ambiente, ele vai descobrindo tudo isso! <br>
 
@@ -252,83 +274,6 @@ Dessa forma ele consegue achar uma rota onde ele maximiza sua recompensa.<br>
 
 O nosso jogo pode ser representado por essa Q-Table, onde temos todos os estados e ações possíveis. <br>
  
- <table class="content-table">
-  <thead>
-    <tr>
-     <th> </th>
-      <th>Cima</th>
-      <th>Baixo</th>
-      <th>Direta</th>
-      <th>Esquerda</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Estado 1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Estado 2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Porta 1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Estado 4</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Estado 5</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Estado 6</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Porta 2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Estado 8</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
- <tr>
-      <td>Porta 3</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-
 
 Vamos supor que a primeira ação do agente é abrir a porta do meio. <br>
 
