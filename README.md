@@ -335,17 +335,24 @@ Ufa! Agora faz sentido como o computador faz para jogar na primeira rodada. Mas 
  
   $$ \Large  {\color{Goldenrod} q_{\ast}(s,a)} = E \left[ {\color{YellowGreen}R_{t+1} } + {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') }\right]$$
  
+ Como vimos, a equação de Bellman nos conta a seguinte história: <br>
+ 
+ <ul>
+ <li>$\large {\color{YellowGreen}R_{t+1}}$ &rarr; Recompensa de tomar a ação <b>a</b> no estado <b>s</b>. </li>
+  <li>$\large {\color{CornflowerBlue}T}$ &rarr; O máximo do retorno esperado descontado para qualquer par de estado-ação <b>(s',a')</b>. </li>
+ </ul>
+ 
  Queremos que os nossos Q-Valores se aproximem do lado direito da equação de Bellman para que assim convergam para o nosso Q-Valor ótimo. <br>
  
  Só falta um detalhe para a receita ficar pronta!
  
- <h3> Taxa de Aprendizado </h3>
+ <h3> ${\color[rgb]{0.71, 0.4, 0.11}\textrm{Taxa de Aprendizado}}$ </h3>
  
  Imagine que o nos temos um Q-Valor um certo par de estado-ação que encontramos em um episódio anterior. <br>
  
- Ao voltarmos nesse estado em outro episódio, teremos um novo Q-Valor para esse mesmo par de estado-ação. Como prosseguihmos? Ignoramos completamente o valor antigo ou o consideramos nos novos cálculos? <br>
+ Ao voltarmos nesse estado em outro episódio, teremos um novo Q-Valor para esse mesmo par de estado-ação. Como prosseguimos? Ignoramos completamente o valor antigo ou o consideramos nos novos cálculos? <br>
  
- A taxa de aprendizado, Learning Rate, vai ser a medida que nos dirá o quão rápido vamos abandonar o nosso Q-Valor atual para o próximo. <br>
+ A ${\color[rgb]{0.71, 0.4, 0.11}\textrm{taxa de aprendizado}}$, Learning Rate, vai ser a medida que nos dirá o quão rápido vamos abandonar o nosso Q-Valor atual para o próximo. <br>
  
  Ela será denotada pela letra grega $\Large \alpha$. <br>
  
@@ -353,26 +360,57 @@ Ufa! Agora faz sentido como o computador faz para jogar na primeira rodada. Mas 
  
  Agora sim, estamos com todos os ingredientes e podemos começar a nossa receita!!<br>
  
- A fórmula que utilizaremos para calcular o novo Q-Valor do par estado-ação (s,a) no tempo t é:
+ A fórmula que utilizaremos para calcular o novo Q-Valor do par estado-ação (s,a) no tempo t é: <br>
  
-  $$\large{\color{Goldenrod} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\textrm{valor antigo}} + \left({\color{YellowGreen}R_{t+1} } + {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') }\right)$$
+ <!-- $$\large{\color{Goldenrod} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\textrm{valor antigo}} + \overbrace{\left({\color{YellowGreen}R\_{t+1} } + {\color{CornflowerBlue}\gamma \max\_{a'}\ q(s',a')}\right)}^{\textrm{valor novo}}$$ -->
  
- $\overbrace{x + \cdots + x}^{n\rm\ times}$
+   $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\color[rgb]{0.47, 0.41, 0.47}\textrm{valor antigo}} + \alpha \overbrace{\left(R\_{t+1} + \gamma \max\_{a'}\ q(s',a')\right)}^{\color[rgb]{0.0, 0.4, 0.65}\textrm{valor novo}}$$
+
+Essa fórmula é bem parecida com a equação de Bellman, só foi acrescentado a ${\color[rgb]{0.71, 0.4, 0.11}\textrm{taxa de aprendizado}}$ e o nosso ${\color[rgb]{0.47, 0.41, 0.47}\textrm{Q-Valor antigo}}$.<br>
+
+Note que quando temos $\large \alpha = 1$ a primeira parte do lado direito da equação, o ${\color[rgb]{0.47, 0.41, 0.47}\textrm{valor antigo}}$ se anula e só temos o ${\color[rgb]{0.0, 0.4, 0.65}\textrm{Q-Valor novo}}$. <br>
+
+Da mesma forma, $\large \alpha = 0$ significa que nunca vamos atualizar o nosso Q-Valor.<br>
+
+Mas chega de conversa! Vamos calcular o Q-Valor para quando o computador começa no Estado 1 e toma a ação ${\color{white} \downarrow}$. Vamos supor que $\gamma = 0.99$. <br>
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\color[rgb]{0.47, 0.41, 0.47}\textrm{valor antigo}} + \alpha \overbrace{\left(R\_{t+1} + \gamma \max\_{a'}\ q(s',a')\right)}^{\color[rgb]{0.0, 0.4, 0.65}\textrm{valor novo}}$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - 0.8) (0) + 0.8 \left\[-1 + 0.99 \left( \max\_{a'}\ q(s',a')\right)\right]$$
+
+Quem exatamente é $\max_{a'}\ q(s',a')$?<br>
+
+Note que como todos os Q-Valores são 0, temos:
+
+$$\large \max\_{a'}\ q(s',a') = \max (q\ (\textrm{estado4}, {\color{white} \uparrow}), \ q(\textrm{estado4},{\color{white} \downarrow} ), \ q(\textrm{estado4}, {\color{white} \rightarrow}), \ q(\textrm{estado4},{\color{white} \leftarrow})) $$
+
+
+$$\large \max\_{a'}\ q(s',a') = \max (0, 0, 0, 0) $$
+
+$$\large \max\_{a'}\ q(s',a') = 0 $$
+
+Agora com o valor de $\max\_{a'}\ q(s',a')$ em maõs, podemos achar o nosso Q-Valor. <br>
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - 0.8) (0) + 0.8 \left\[-1 + 0.99 0 \right]$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (0) + 0.8 -(1) $$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = -0.8 $$
+
+Logo, o nosso Q-Valor para o par estado-ação $(s,a) = (\textrm{Estado 1}, {\color{white} \downarrow}$ é -0.8. <br>
+
+Agora vamos repetir esse processo até o jogo acabar ou podemos definir um limite de passos máximo que o jogador pode ter. <br>
+
+Observe que quando os nossos Q-Valores convergirem para os Q-Valores ótimos, ou seja, a nossa Q-Função convergir para a Q-Função ótima, teremos a nossa tão sonhada política ótima. <br>
+
+A nossa Q-Tabela que guarda os nossos Q-Valores está assim no momento: <br>
+
+
+ <div align="center">
+ <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/confused-meme.gif"> 
+ </div>
+ <br>
  
-$$\large{\color{Goldenrod} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\textrm{valor antigo}} +  \overbrace{\left[{\color{YellowGreen}R_{t+1}}  + {\color{CornflowerBlue}\gamma \max q}\right]}^{\textrm{valor novo}}$$
-
-
-Essa fórmula é basicamente a equação de Bellman + uma parte para cal <br>
-
-Como vimos, a equação de Bellman nos conta a seguinte hisstória: <br>
-
-<ul>
- <li>$\large {\color{YellowGreen}R_{t+1}}$ &rarr; Recompensa de tomar a ação <b>a</b> no estado <b>s</b>. </li>
-  <li>$\large {\color{CornflowerBlue}T}$ &rarr; O máximo do retorno esperado descontado para qualquer par de estado-ação <b>(s',a')</b>. </li>
- </ul>
- 
- A parte que adicionamos a equação de Bellman
-
  </p>
 
 
