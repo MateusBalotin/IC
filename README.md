@@ -224,9 +224,9 @@ Com $\large {\color{CornflowerBlue} T} = {\color{CornflowerBlue}\gamma \max_{a'}
  
  Mas como podemos interprar isso matematicamente e entender o conceito mais claramente? <br>
  
-Para isso imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as ações que ele pode tomar são  $$\Large {\color{white} \uparrow \ \downarrow \ \rightarrow \ \leftarrow }$$ <br>
+Para isso imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as ações que ele pode tomar são  $$\Large {\color{white} \uparrow \ \downarrow \ \rightarrow \ \leftarrow }$$
 
- O jogo é bem simples, são alguns quadrados onde o jogador pode se mover. <br>
+ O jogo é bem simples, o jogador vai começar em algum quadrado e se movimentará com as ações acima. <br>
  
  <div align="center">
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/tables2.jpg" title="Jogo de abrir 3 portas"> 
@@ -264,56 +264,116 @@ O jogo funciona assim: <br>
 $\large \textrm{Regras}$
 <ol>
  <li> A movimentação só poder ser feita normalmente, ou seja, se estiver no Estado 1 e fizer a ação  $\Large {\color{white} \uparrow}$ você não saí do lugar, as únicas ações possíveis para se movimentar são  $\Large {\color{white} \downarrow \ \rightarrow }$.</li>
- <li> É possível ficar entrando e saindo de uma porta. Por exemplo, no Estado 2 ao tomar a ação $\Large {\color{white} \rightarrow }$  você abre a porta. Para abrí-la novamente basta voltar uma casa e avançar, isto é, tomar as ações $\Large {\color{white}  \leftarrow \ \rightarrow}$ ou $\Large {\color{white} \downarrow \ \uparrow }$.</li>
+ <li> É possível ficar entrando e saindo de uma porta. Por exemplo, no Estado 2 ao tomar a ação $\Large {\color{white} \rightarrow }$  você abre a ${\color{GreenYellow} \textrm{porta} \ 1}$. Para abrí-la novamente basta voltar uma casa e avançar, isto é, tomar as ações $\Large {\color{white}  \leftarrow \ \rightarrow}$ ou $\Large {\color{white} \downarrow \ \uparrow }$.</li>
  </ol>
- <br>
  
 Inicialmente o agente é como um bebê que acabou de nascer, ele não sabe o objetivo do jogo, qual é a melhor ação ou quais as recompensas cada estado tem. Porém, conforme ele vai <b> explorando </b> o ambiente, ele vai descobrindo tudo isso! <br>
 
-Dessa forma ele consegue achar uma rota onde ele maximiza sua recompensa.<br>
+Logo, conforme ele vai jogando partidas, ele vai descobrindo os Q-Valores para cada par de estado-ação e assim ele consegue achar a melhor rota que maximiza sua recompensa. <br>
 
-O nosso jogo pode ser representado por essa Q-Table, onde temos todos os estados e ações possíveis. <br>
- 
+Para fins de organização e visualização, vamos guardar nossos Q-Valores nessa Q-Tabela, onde no eixo horizontal estão os estados e no eixo horizontal as possíveis ações.<br>
 
-Vamos supor que a primeira ação do agente é abrir a porta do meio. <br>
 
-<div align="center">
- <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/room_minus10.jpg">
- </div>
-<br>
-
-Como podemos observar, ele recebeu <b>-10 pontos</b> de recompensa. Logo, faz sentido ele escolher outras portas além dessas. <br>
-
-Agora ele escolheu a porta 1. <br>
-
-<div align="center">
- <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/room10.jpg">
+ <div align="center">
+ <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/Tabela.jpg"> 
  </div>
  <br>
+
+Pronto! Agora só falta o computador começar a jogar e conforme ele for jogando, ele:
+
+<ol> 
+  <li>Vai aprender novos Q-Valores para cada par de estado-ação. </li>
+  <li>Atualizará esses Q-Valores com a equação de Bellman. </li>
+ <li> Em cada rodada vai escolher a ação com maior Q-Valor. </li>
+ </ol>
  
-Muito bom!! Ele recebeu uma recompensa de <b>+10 pontos</b>, então ele só precisa continuar escolhendo a porta 1 para ganhar. Mas será que essa é a maneira mais eficiente de ele jogar? <br>
-
-Vamos dar uma bisbilhotada no que a porta 3 está escondendo.<br>
-
-<div align="center">
- <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/room30.jpg">
+ Mas pera aí! Como que vai funcionar a primeira jogada? Afinal, no começo o computador não sabe nada sobre o jogo e todos os Q-Valores estão zerados. Como ele vai escolher o melhor Q-Valor então? <br>
+ 
+ <div align="center">
+ <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/confused-meme.gif"> 
  </div>
-<br>
+ <br>
 
-Olha só! Atrás da porta 3 tem com uma recompensa incrível de <b>+30 pontos</b>. Se o agente tivesse escolhido a porta 3 desde o começo ele teria alcançando seu objetivo com 1 ação. <br>
-
-Como podemos ver, seria bom que o nosso agente explorasse o ambiente, já que como vimos outros caminhos podem ter recompensas melhores. Caso ele não explorasse o ambiente e so escolhesse a porta 1, ele nunca teria achado a recompensa da porta 3.<br>
-
+ Para responder essa pergunta vamos definir o conceito de ${\color{Fuchsia}\textrm{Exploration}}$ vs ${\color{Emerald}\textrm{Exploitation}}$.
  
  </p>
  
- <h1> Exploration vs Exploitation </h1>
+ <h2> ${\color{Fuchsia}\textrm{Exploration}}$ vs  ${\color{Emerald}\textrm{Exploitation}}$</h2>
 <p>
  
+ Como você pode imaginar, ${\color{Fuchsia}\textrm{Exploration}}$, é o ato de explorar o ambiente, ou seja, não vamos nos preocupar com os Q-Valores ao tomarmos uma ação. <br>
+ Porém, ${\color{Emerald}\textrm{Exploitation}}$, é exatemente o contrário. É o ato de utilizarmos o que sabemos do ambiente para a nossa vantagem, escolher as ações baseados na recompensa máxima que teremos delas. Ou seja, escolher as ações que tem o maior Q-Valor para cada par de estado-ação. <br>
+
+Logo, no começo do jogo, o computador irá explorar o ambiente, não se preocupando com os Q-Valores. Assim, com cada jogada ele vai adquirindo novos Q-Valores para os pares de estado-ação e descobrindo as recompensas para os estados diferentes do jogo. <br>
  
+Ufa! Agora faz sentido como o computador faz para jogar na primeira rodada. Mas como podemos definir essa taxa de ${\color{Fuchsia}\textrm{Exploration}}$ vs ${\color{Emerald}\textrm{Exploitation}}$ no código? <br>
  
+ Para isso, vamos implementar uma Greedy Epsilon Strategy, ou no bom português, uma Estatégia Gananciosa Epsilon. <br>
+ 
+ Apesar do nome um pouco assustador, a implementação é bem simples. <br>
+ 
+ <ol>
+ <li> Defina Epsilon $(\large \epsilon)$ = 1 </li>
+ <li> Escolha um número aleatório r entre 0 e 1</li>
+ <li> Se $\large \epsilon$ > r $\rightarrow$ Então vamos explorar o ambiente</li>
+  <li> Diminua o valor de $\large \epsilon$ a cada episódio</li>
+  </ol>
+ 
+ Assim, no começo do jogo exploramos mais o ambiente, descobrindo os Q-Valores para cada estado e conforme vamos jogando, esses Q-Valores vão sendo atualizados iterativamente até que convergam para o seu valor ótimo. <br>
+ 
+ Quando temos esses Q-Valores em mãos, como a taxa de exploração vai decaindo, vamos tomar nossas decisões baseadas nesses Q-Valores!! <br>
  </p>
  
+ <h1> Voltando ao nosso jogo das Portas</h1>
+ <p>
+ 
+ Finalmente, vamos ver como seria a primeira partida. Vamos dizer que o computador tomou a ação ${\color{white} \downarrow \ }$, ou seja, foi do Estado 1 para o Estado 4. <br>
+ 
+ Como atualizamos o Q-Valor para essa jogada? <br>
+ 
+ Vamos nos recordar da equação de Bellman: <br>
+ 
+  $$ \Large  {\color{Goldenrod} q_{\ast}(s,a)} = E \left[ {\color{YellowGreen}R_{t+1} } + {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') }\right]$$
+ 
+ Queremos que os nossos Q-Valores se aproximem do lado direito da equação de Bellman para que assim convergam para o nosso Q-Valor ótimo. <br>
+ 
+ Só falta um detalhe para a receita ficar pronta!
+ 
+ <h3> Taxa de Aprendizado </h3>
+ 
+ Imagine que o nos temos um Q-Valor um certo par de estado-ação que encontramos em um episódio anterior. <br>
+ 
+ Ao voltarmos nesse estado em outro episódio, teremos um novo Q-Valor para esse mesmo par de estado-ação. Como prosseguihmos? Ignoramos completamente o valor antigo ou o consideramos nos novos cálculos? <br>
+ 
+ A taxa de aprendizado, Learning Rate, vai ser a medida que nos dirá o quão rápido vamos abandonar o nosso Q-Valor atual para o próximo. <br>
+ 
+ Ela será denotada pela letra grega $\Large \alpha$. <br>
+ 
+ Para o nosso episódio vamos considerar $\large \alpha = 0.8$.
+ 
+ Agora sim, estamos com todos os ingredientes e podemos começar a nossa receita!!<br>
+ 
+ A fórmula que utilizaremos para calcular o novo Q-Valor do par estado-ação (s,a) no tempo t é:
+ 
+  $$\large{\color{Goldenrod} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\textrm{valor antigo}} + \left({\color{YellowGreen}R_{t+1} } + {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') }\right)$$
+ 
+ $\overbrace{x + \cdots + x}^{n\rm\ times}$
+ 
+$$\large{\color{Goldenrod} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\textrm{valor antigo}} +  \overbrace{\left[{\color{YellowGreen}R_{t+1}}  + {\color{CornflowerBlue}\gamma \max q}\right]}^{\textrm{valor novo}}$$
+
+
+Essa fórmula é basicamente a equação de Bellman + uma parte para cal <br>
+
+Como vimos, a equação de Bellman nos conta a seguinte hisstória: <br>
+
+<ul>
+ <li>$\large {\color{YellowGreen}R_{t+1}}$ &rarr; Recompensa de tomar a ação <b>a</b> no estado <b>s</b>. </li>
+  <li>$\large {\color{CornflowerBlue}T}$ &rarr; O máximo do retorno esperado descontado para qualquer par de estado-ação <b>(s',a')</b>. </li>
+ </ul>
+ 
+ A parte que adicionamos a equação de Bellman
+
+ </p>
 
 
 
