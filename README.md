@@ -257,7 +257,7 @@ O jogo funciona assim: <br>
 | Recompensas | Pontuação |
 | --- | --- |
 | Estados | $$-1$$ |
-| Portas | $${\color{Green}+10} \ \ \textrm{&} \ \ {\color{Red}-10}$$ \textrm{&} \ \ {\color{Green}+{30}$$||
+| Portas | $${\color{Green}+10} \ \ \textrm{\&} \ \ {\color{Red}-10}$$ \textrm{\&} \ \ {\color{Green}+{30}$$||
 
 <br>
 
