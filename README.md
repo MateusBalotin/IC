@@ -256,8 +256,8 @@ O jogo funciona assim: <br>
 
 | Recompensas | Pontuação |
 | --- | --- |
-| Estados | $$0$$ |
-| Portas | $${\color{Green}+10} \ \ \textrm{ou} \ \ {\color{Red}-10}$$|
+| Estados | $$-1$$ |
+| Portas | $${\color{Green}+10} \ \ \textrm{&} \ \ {\color{Red}-10}$$ \textrm{&} \ \ {\color{Green}+{30}$$||
 
 <br>
 
@@ -391,7 +391,7 @@ $$\large \max\_{a'}\ q(s',a') = 0 $$
 
 Agora com o valor de $\max\_{a'}\ q(s',a')$ em maõs, podemos achar o nosso Q-Valor. <br>
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - 0.8) (0) + 0.8 \left\[-1 + 0.99 0 \right]$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - 0.8) (0) + 0.8 \left\[-1 + (0.99 \cdot 0) \right]$$
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (0) + 0.8 -(1) $$
 
@@ -411,6 +411,27 @@ A nossa Q-Tabela que guarda os nossos Q-Valores está assim no momento: <br>
  </div>
  <br>
  
+ O computador está no Estado 4 agora e toma a mesma ação $$ {\color{white} \downarrow}$$. Logo, como vimos o Q-Valor para essa par de estado-ação é: 
+ 
+ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\color[rgb]{0.47, 0.41, 0.47}\textrm{valor antigo}} + \alpha \overbrace{\left(R\_{t+1} + \gamma \max\_{a'}\ q(s',a')\right)}^{\color[rgb]{0.0, 0.4, 0.65}\textrm{valor novo}}$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(Estado 4,\downarrow)} = (1 - 0.8) (0) + 0.8 \left\[10 + 0.99 \left( \max\_{a'}\ q(Estado 6,a')\right)\right]$$
+
+Note que $\max\_{a'}\ q(s,a') = \max\_{a'}\ q(Estado 6,a')$ vai ser 0 de forma análoga ao caso passado. <br>
+
+Logo o Q-Valor para o nosso par de estado-ação $(Estado 4, \downarrow)$ é:
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(Estado 4,\downarrow)} = 0.8 \cdot 10 $$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(Estado 4,\downarrow)} = 8 $$
+
+Agora que o computador recebeu uma recompensa positiva da ${\color{red} \textrm{Porta 2}}$, vamos supor que ele irá voltar para o Estado 4. <br>
+
+Logo o Q-Valor de $({\color{red} \textrm{Porta 2}} é:
+
+ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\color[rgb]{0.47, 0.41, 0.47}\textrm{valor antigo}} + \alpha \overbrace{\left(R\_{t+1} + \gamma \max\_{a'}\ q(s',a')\right)}^{\color[rgb]{0.0, 0.4, 0.65}\textrm{valor novo}}$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(Estado 6,\uparrow)} = (1 - 0.8) (0) + 0.8 \left\[10 + 0.99 \left( \max\_{a'}\ q(Estado 6,a')\right)\right]$$
+
  </p>
 
 
