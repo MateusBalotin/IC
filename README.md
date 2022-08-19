@@ -399,7 +399,7 @@ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (0) + 0.8 -(1) $$
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = -0.8 $$
 
-Logo, o nosso Q-Valor para o par estado-ação $(s,a) = (\textrm{Estado 1}, {\color{white} \downarrow})$ é -0.8. <br>
+Logo, o nosso Q-Valor para o par estado-ação $\large (s,a)$ = $(\textrm{Estado 1}, {\color{white} \downarrow})$ é -0.8. <br>
 
 Agora vamos repetir esse processo até o jogo acabar ou podemos definir um limite de passos máximo que o jogador pode ter. <br>
 
@@ -409,11 +409,13 @@ A nossa Q-Tabela que guarda os nossos Q-Valores está assim no momento: <br>
 
 
  <div align="center">
- <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/confused-meme.gif"> 
+ <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/A%C3%A7%C3%B5es%20(1).jpg"> 
  </div>
  <br>
  
- O computador está no Estado 4 agora e toma a mesma ação $${\color{white} \downarrow}$$. Logo, como vimos o Q-Valor para essa par de estado-ação é: 
+ O computador está no Estado 4 agora e toma a mesma ação ${\color{white} \downarrow}$. <br>
+ 
+ Logo, como vimos o Q-Valor para essa par de estado-ação é: 
  
  $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\color[rgb]{0.47, 0.41, 0.47}\textrm{valor antigo}} + \alpha \overbrace{\left(R\_{t+1} + \gamma \max\_{a'}\ q(s',a')\right)}^{\color[rgb]{0.0, 0.4, 0.65}\textrm{valor novo}}$$
 
@@ -423,32 +425,41 @@ Note que $\max\_{a'}\ q(s,a') = \max\_{a'}\ q(Estado 6,a')$ vai ser 0 de forma a
 
 Logo o Q-Valor para o nosso par de estado-ação $(\textrm{Estado 4}, \downarrow)$ é:
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4},\downarrow)} = 0.8 \cdot 10 $$
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4},\downarrow)} = 8 $$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4},\downarrow)} = (0.8)(10)$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4},\downarrow)} = 8$$
 
 Agora que o computador recebeu uma recompensa positiva da ${\color{red} \textrm{Porta 2}}$, vamos supor que ele irá voltar para o Estado 4. <br>
 
-Logo o Q-Valor de $(\textmrm{Estado 6}$, $\uparrow$ é:
+Logo o Q-Valor de $(\textrm{Estado 6}, \uparrow)$ é:
 
  $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\color[rgb]{0.47, 0.41, 0.47}\textrm{valor antigo}} + \alpha \overbrace{\left(R\_{t+1} + \gamma \max\_{a'}\ q(s',a')\right)}^{\color[rgb]{0.0, 0.4, 0.65}\textrm{valor novo}}$$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = (1 - 0.8)(-0.8) + 0.8 \left\[-1 + 0.99 \left( \max\_{a'}\ q(\textrm{Estado 4},a')\right)\right]$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = (1 - 0.8)(8) + 0.8 \left\[-1 + 0.99 \left( \max\_{a'}\ q(\textrm{Estado 4},a')\right)\right]$$
 
 Note que $\max\_{a'}\ q(\textrm{Estado 4},a')$ será:
 
 $$\large \max\_{a'}\ q(\textrm{Estado 4},a') = \max (q\ (\textrm{estado4}, {\color{white} \uparrow}), \ q(\textrm{estado4},{\color{white} \downarrow} ), \ q(\textrm{estado4}, {\color{white} \rightarrow}), \ q(\textrm{estado4},{\color{white} \leftarrow})) $$
 
-$$\large \max\_{a'}\ q(\textrm{Estado 4},a') = \max (0, -0.8, 0, 0) $$
+$$\large \max\_{a'}\ q(\textrm{Estado 4},a') = \max (0, 8, 0, 0) $$
 
 $$\large \max\_{a'}\ q(\textrm{Estado 4},a') = 0 $$
 
-Apesar de termos um Q-Valor para o $(\textrm{Estado 4}, \downarrow$, como ele é negativo e escolhemos o máximo dos Q-Valores, o valor escolhido foi $0$. <br>
+Note que agora temos um valor para o par estado-ação $(\textrm{Estado 4}, \downarrow$.<br>
 
-Logo, o nosso Q-Valor para $(\textmrm{Estado 6}$, $\uparrow$ é:
+Logo, o nosso Q-Valor para ($\textrm{Estado 6}$, $\uparrow)$ é:
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = (0.2)(-0.8) + (0.8)(-1) $$
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = -0.16 - 0.8 $$
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = -0.96$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = (0.2)(8) + (0.8)(-1) $$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = 1.6 - 0.8 $$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = 0.8$$
+
+Vamos dar um olhada em como esta nossa Q-Tabela: <br>
+
+ <div align="center">
+ <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/Tabela%202.jpg" title="Estados com as portas"> 
+ </div>
+ <br>
+ 
 
 
  </p>
