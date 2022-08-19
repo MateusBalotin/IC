@@ -508,11 +508,16 @@ Note que agora temos um valor para o par estado-ação $(\textrm{Estado 4}, \dow
 
 Logo, o nosso Q-Valor para $({\color{red}\textrm{Porta 2}}, \uparrow)$ é:
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = (0.2)(0) + (0.8)(-1) + 8 $$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = (0.2)(7.2) + (0.8)(-1) + 17.6 $$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = -0.8  + 8$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = 3.6 - 0.8 + 17.6 $$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = 7.2$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = 20.4$$
+
+A recompensa atual é 27.<br>
+
+Finalmente, de forma análoga anterior temos que o novo Q-Valor para $(\textrm{Estado 4}, \downarrow)$. <br>
+
  </p>
 
 
