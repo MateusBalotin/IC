@@ -435,7 +435,7 @@ Logo o Q-Valor de $(\textrm{Estado 6}, \uparrow)$ é:
 
  $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\color[rgb]{0.47, 0.41, 0.47}\textrm{valor antigo}} + \alpha \overbrace{\left(R\_{t+1} + \gamma \max\_{a'}\ q(s',a')\right)}^{\color[rgb]{0.0, 0.4, 0.65}\textrm{valor novo}}$$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = (1 - 0.8)(8) + 0.8 \left\[-1 + 0.99 \left( \max\_{a'}\ q(\textrm{Estado 4},a')\right)\right]$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = (1 - 0.8)(0) + 0.8 \left\[-1 + 0.99 \left( \max\_{a'}\ q(\textrm{Estado 4},a')\right)\right]$$
 
 Note que $\max\_{a'}\ q(\textrm{Estado 4},a')$ será:
 
@@ -443,15 +443,17 @@ $$\large \max\_{a'}\ q(\textrm{Estado 4},a') = \max (q\ (\textrm{estado4}, {\col
 
 $$\large \max\_{a'}\ q(\textrm{Estado 4},a') = \max (0, 8, 0, 0) $$
 
-$$\large \max\_{a'}\ q(\textrm{Estado 4},a') = 0 $$
+$$\large \max\_{a'}\ q(\textrm{Estado 4},a') = 8 $$
 
 Note que agora temos um valor para o par estado-ação $(\textrm{Estado 4}, \downarrow$.<br>
 
-Logo, o nosso Q-Valor para ($\textrm{Estado 6}$, $\uparrow)$ é:
+Logo, o nosso Q-Valor para $(\textrm{Estado 6}, \uparrow)$ é:
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = (0.2)(8) + (0.8)(-1) $$
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = 1.6 - 0.8 $$
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = 0.8$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = (0.2)(0) + (0.8)(-1) + 8 $$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = -0.8  + 8$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 6}\uparrow)} = 7.2$$
 
 Vamos dar um olhada em como esta nossa Q-Tabela: <br>
 
@@ -460,6 +462,15 @@ Vamos dar um olhada em como esta nossa Q-Tabela: <br>
  </div>
  <br>
  
+ Como o computador recebeu uma recompensa alta abrindo a ${\color{red} \textrm{Porta 2}}$ ele irá ficar voltando nesse estado até ganhar. <br>
+ 
+ A sua recompensa atual é: $R_{Estado 4} + R_{Estado 6} = -1 + 10 = 9$. <br>
+ 
+Já que o computador quer voltar a ${\color{red} \textrm{Porta 2}}$ e ele se encontra no Estado 4, ele irá tomar a ação ${\color{white} \downarrow}.
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s,a)}_{\color[rgb]{0.47, 0.41, 0.47}\textrm{valor antigo}} + \alpha \overbrace{\left(R\_{t+1} + \gamma \max\_{a'}\ q(s',a')\right)}^{\color[rgb]{0.0, 0.4, 0.65}\textrm{valor novo}}$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4}\downarrow)} = (1 - 0.8)(8) + 0.8 \left\[-1 + 0.99 \left( \max\_{a'}\ q(\textrm{Estado 6},a')\right)\right]$$
 
 
  </p>
