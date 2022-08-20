@@ -409,7 +409,7 @@ A nossa Q-Tabela que guarda os nossos Q-Valores está assim no momento: <br>
 
 
  <div align="center">
- <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/A%C3%A7%C3%B5es%20(1).jpg"> 
+ <img align="center"  height = 300 width = 400 src=https://github.com/MateusBalotin/IC/blob/main/images/A%C3%A7%C3%B5es%20(1).jpg> 
  </div>
  <br>
  
@@ -458,7 +458,7 @@ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \upar
 Vamos dar um olhada em como esta nossa Q-Tabela: <br>
 
  <div align="center">
- <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/Tabela%202.jpg" title="Estados com as portas"> 
+ <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/tabela%202%20vdd.jpg" title="Estados com as portas"> 
  </div>
  <br>
  
@@ -517,6 +517,16 @@ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \upar
 A recompensa atual é 27.<br>
 
 Finalmente, de forma análoga anterior temos que o novo Q-Valor para $(\textrm{Estado 4}, \downarrow)$. <br>
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4}\downarrow)} = 37.2$$
+
+Como a nossa recompensa é mair que 30, o primeiro episódio acabou. <br>
+
+A nossa Q-Tabela ficou assim: <br>
+
+<div align="center">
+ <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/tabela%203.jpg" title="Estados com as portas"> 
+</div>
 
  </p>
 
