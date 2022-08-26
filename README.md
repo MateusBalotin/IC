@@ -190,7 +190,7 @@ De uma forma natural, podemos definir a política ótima $\large pi$ olhando o r
  <p>
   De forma análoga ao que fizemos, vamos definir a nossa função valor-ação ótima como simplesmente o máximo das funções valor-ação. <br><br>
  
-  $$ \Large {\color{Goldenrod} q_{\ast}(s,a)} = \max_{\pi}\ {\color{ForestGreen} q_{\pi}(s,a) }$$
+  $$\Large {\color{Goldenrod} q_{\ast}(s,a)} = \max_{\pi}\ {\color{ForestGreen} q_{\pi}(s,a)}$$
   
   para todo <b>s</b> &in; em <b>S</b> e todo <b>a</b> &in; <b>A</b>. Em outras palavras, $\large {\color{Goldenrod} q_{\ast}}$ gera o maior retorno esperado possível para qualquer par ação-estado <b>(s,a)</b> sobre qualquer política <b>&pi;</b>.<br><br>
  
@@ -200,7 +200,7 @@ De uma forma natural, podemos definir a política ótima $\large pi$ olhando o r
  
  Uma propriedade sensacional que $\large {\color{Goldenrod} q_{\ast}}$ possui é que ela deve satisfazer a equação ótima de <b>Bellman</b>. <br><br>
  
- $$ \Large  {\color{Goldenrod} q_{\ast}(s,a)} = E \left[ {\color{YellowGreen}R_{t+1} } + {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') }\right]$$
+ $$\Large  {\color{Goldenrod} q_{\ast}(s,a)} = E \left[ {\color{YellowGreen}R_{t+1} } + {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') }\right]$$
  
  A equação de Bellman nos diz que para qualquer par de estado-ação, <b>(s,a)</b>, no tempo <b>t</b> o  <b>retorno esperado</b>, $\large {\color{Goldenrod} q_{\ast}}$ será:
  
@@ -209,7 +209,7 @@ De uma forma natural, podemos definir a política ótima $\large pi$ olhando o r
   <li>$\large {\color{CornflowerBlue}T}$ &rarr; O máximo do retorno esperado descontado para qualquer par de estado-ação <b>(s',a')</b>. </li>
  </ul>
   
-Com $\large {\color{CornflowerBlue} T} = {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') } $.
+Com $\large {\color{CornflowerBlue} T} = {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a')}$.
  
  Note que como estamos seguindo a política ótima, o proximo estado <b>s'</b> vai ser o estado ótimo onde podemos escolher a melhor ação <b>a'</b> em <b>t + 1</b>. <br><br>
  
@@ -527,6 +527,8 @@ A nossa Q-Tabela ficou assim: <br>
 <div align="center">
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/tabela%203.jpg" title="Estados com as portas"> 
 </div>
+
+
 
  </p>
 
