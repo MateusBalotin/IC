@@ -534,7 +534,7 @@ A nossa Q-Tabela ficou assim: <br>
 
 Vamos repetir esse proceso para mais 2 partidas, porém com ações diferentes. <br>
 
-Imagine que agora o computador queira cehgar na Porta 1. Para isso, precisamos calcular o valor de $Q(Estado 1, \rightarrow)$. <br>
+Imagine que agora o computador queira chegar na $\textrm{\color{yellow}Porta 1}$. Para isso, precisamos calcular o valor de $Q(Estado 1, \rightarrow)$. <br>
 
 Como os cálculos são extensivos e são análogos aos já feitos, serão omitidos. <br>
 
@@ -554,7 +554,7 @@ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 2}\rightarrow)} = 28.
 
 Note que como a recompensa é maior que 30 o episódio acabou. Como as portas tem a mesma recompensa e a distância até elas é a mesma, os resultados foram iguais. <br>
 
-Por fim, no último episódio o computador vai ir até a Porta 3. <br>
+Por fim, no último episódio o computador vai ir até a $\textrm{\color{pink}Porta 3}$. <br>
 
 Para chegar até la, suas ações serão: $\rightarrow \ \downarrow \ \downarrow \ \rightarrow$.
 
@@ -563,9 +563,9 @@ Logo, temos os seguintes Q-Valores. <br>
  <ol>
  <li>$Q(\textrm{Estado 1}, \rightarrow) = 27.8$ </li>
  <li> $Q(\textrm{Estado 2}, \downarrow) \ \ = -0.8$</li>
- <li> $Q(\textrm{Estado 5}, \downarrow) = -0.8$</li>
+ <li> $Q(\textrm{Estado 5}, \downarrow) \ \  = -0.8$</li>
  <li> $Q(\textrm{Estado 8}, \rightarrow) = 24$</li>
- <li> $Q(\textrm{{\color{pink}Porta 3}}, \leftarrow) =  23.2 $</li></li>
+ <li> $Q(\textrm{{\color{pink}Porta 3}}, \leftarrow) \ \ =  23.2 $</li></li>
  <li> $Q(\textrm{Estado 8}, \rightarrow) = 51.8$</li>
   </ol>
   
