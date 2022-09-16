@@ -565,7 +565,7 @@ Logo, temos os seguintes Q-Valores. <br>
  <li> $Q(\textrm{Estado 2}, \downarrow) \ \ = -0.8$</li>
  <li> $Q(\textrm{Estado 5}, \downarrow) \ \  = -0.8$</li>
  <li> $Q(\textrm{Estado 8}, \rightarrow) = 24$</li>
- <li> $Q(\textrm{{\color{pink}Porta 3}}, \leftarrow) \ \ =  23.2 $</li></li>
+ <li> $Q(\textrm{{\color{pink}Porta 3}} \ \ \ , \leftarrow) \ \ =  23.2 $</li></li>
  <li> $Q(\textrm{Estado 8}, \rightarrow) = 51.8$</li>
   </ol>
   
