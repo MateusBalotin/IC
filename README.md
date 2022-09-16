@@ -528,6 +528,8 @@ A nossa Q-Tabela ficou assim: <br>
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/A%C3%A7%C3%B5es-2.png"> 
 </div>
 
+<br>
+
 Vamos repetir esse proceso para mais 2 partidas, porém com ações diferentes. <br>
 
 Imagine que agora o computador queira cehgar na Porta 1. Para isso, precisamos calcular o valor de $Q(Estado 1, \rightarrow)$. <br>
@@ -546,7 +548,7 @@ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 2}\rightarrow)} = 16.
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Porta 2}\leftarrow)} = 17.4$$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 2\rightarrow)} = 28.8$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 2}\rightarrow)} = 28.8$$
 
 Note que como a recompensa é maior que 30 o episódio acabou. Como as portas tem a mesma recompensa e a distância até elas é a mesma, os resultados foram iguais. <br>
 
@@ -565,7 +567,13 @@ Logo, temos os seguintes Q-Valores. <br>
  <li> Q(Estado 8, \rightarrow) = 51.8</li>
   </ol>
   
-  Como a nossa recompensa pasou de 30 o episódio terminou. A Q-Tabela está dessa forma:
+ Como a nossa recompensa pasou de 30 o episódio terminou. A Q-Tabela está dessa forma:
+  
+ <div align="center">
+ <img align="center"  height = 400 width = 400 src=" https://github.com/MateusBalotin/IC/blob/main/images/a%C3%A7%C3%B5es-3.png"> 
+</div>
+
+ 
  </p>
 
 
