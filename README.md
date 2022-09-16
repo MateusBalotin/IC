@@ -395,7 +395,7 @@ Agora com o valor de $\max\_{a'}\ q(s',a')$ em maõs, podemos achar o nosso Q-Va
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - 0.8) (0) + 0.8 \left\[-1 + (0.99 \cdot 0) \right]$$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (0) + 0.8 -(1) $$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (0.2)(0) + 0.8 \cdot -(1) $$
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = -0.8 $$
 
@@ -504,21 +504,21 @@ $$\large \max\_{a'}\ q(\textrm{Estado 4},a') = \max (0, 17.6, 0, 0) $$
 
 $$\large \max\_{a'}\ q(\textrm{Estado 4},a') = 17.6 $$
 
-Note que agora temos um valor para o par estado-ação $(\textrm{Estado 4}, \downarrow$.<br>
+Note que agora temos um valor para o par estado-ação $(\textrm{Estado 4}, \downarrow)$.<br>
 
 Logo, o nosso Q-Valor para $({\color{red}\textrm{Porta 2}}, \uparrow)$ é:
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = (0.2)(7.2) + (0.8)(-1) + 17.6 $$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = 3.6 - 0.8 + 17.6 $$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = 1.4 - 0.8 + 17.6 $$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = 20.4$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}({\color{red}\textrm{Porta 2}}, \uparrow)} = 18.2$$
 
 A recompensa atual é 27.<br>
 
 Finalmente, de forma análoga anterior temos que o novo Q-Valor para $(\textrm{Estado 4}, \downarrow)$. <br>
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4}\downarrow)} = 37.2$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4}\downarrow)} = 29.7$$
 
 Como a nossa recompensa é mair que 30, o primeiro episódio acabou. <br>
 
@@ -528,8 +528,42 @@ A nossa Q-Tabela ficou assim: <br>
  <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/tabela%203.jpg" title="Estados com as portas"> 
 </div>
 
+Vamos repetir esse proceso para mais 2 partidas, porém com ações diferentes. <br>
 
+Imagine que agora o computador queira cehgar na Porta 1. Para isso, precisamos calcular o valor de $Q(Estado 1, \rightarrow)$. <br>
 
+Como os cálculos são extensivos e são análogos aos já feitos, serão omitidos. <br>
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 1}\rightarrow)} = -0.8$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 2}\rightarrow)} = 8$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Porta 2}\leftarrow)} = 7.2$$
+
+De forma similiar ao anterior, o computador ficará voltando para a Porta 2 até o episódio acabar. <br>
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 2}\rightarrow)} = 18.2$$
+
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Porta 2}\rightarrow)} = 29.7$$
+
+Note que como a recompensa é maior que 30 o episódio acabou. Como as portas tem a mesma recompensa e a distância até elas é a mesma, os resultados foram iguais. <br>
+
+Por fim, no último episódio o computador vai ir até a porta 3. <br>
+
+Para chegar até la, suas ações serão: $\rightarrow, \downarrow, \downarrow, \rightarrow$.
+
+Logo, temos os seguintes Q-Valores. <br>
+
+ <ol>
+ <li>Q(Estado 1, \rightarrow) = -0.8 </li>
+ <li> Q(Estado 2, \downarrow) = -0.8</li>
+ <li> Q(Estado 5, \downarrow) = -0.8</li>
+ <li> Q(Estado 8, \rightarrow) = 24</li>
+ <li> Q(Porta 3, \leftarrow) =  23.2 </li></li>
+ <li> Q(Estado 8, \rightarrow) = 51.8</li>
+  </ol>
+  
+  Como a nossa recompensa pasou de 30 o episódio terminou. A Q-Tabela está dessa forma:
  </p>
 
 
