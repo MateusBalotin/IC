@@ -1,24 +1,26 @@
 
 <h1> Projeto de Iniciação Científica </h1>
-This repository contain 2 projects about Reinforcement Learning, more specifically of Q-Learning, which I did with my mentor Lucas Pedroso.
-
+Esse repositório é um relatório da minha Iniciação Científica com o professor Lucas G. Pedroso com o intuito de prover uma introdução ao Aprendizado por Reforço.
 <h1> Cartpole </h1>
 
-<p> This project is about a fairly common algorithm to understand DQN - Double Q-Networks, where the objective of the game <br>
-is that the cart and pole doesn't move a lot. If the pole fall beyond a certain angle it's game over and the samme applies <br>
-when the cart moves too far away</p>
+<p> Nesse projeto é apresentado o código para o treinamento de 2 jogos: Cartpole e Freezing Lake.<br>
+ </p>
 
-<p> In the project I basically defined the fundamental things about Q-Learning and later on just called Neural Networs to train the model</p>
+<h1> CartPole </h1>
+
+Cartpole é um jogo presente no enviroment gym, no qual é possível controlar somente 2 teclas, esquerda e direita.O jogo é composto de um carrino e uma vara em cima do mesmo, a qual pende o lado contrário do movimento.  <br>
+
+O objetivo do jogo é não deixar a vara passar de um certo grau e não sair muito longe do centro da tela. <br>
+
+Para o treinamento do mesmo, foi usado uma técnica bem comum, a DQN - Double Q-Network. A qual é basicamente uma junção dos conceitos de Aprendizado com Reforço com Redes Neurais. <br>
 
 <h1> Freezing Lake</h1>
 
 
-<p> This code is to show the basics of Q-Learning, especially Q-Table, without using any complicated means.</p>
+<p> O propósito desse código é monstrar os conceitos básicos do Q-Learning e um exemplo de uma Q-Table.</p>
 
-<p> This game is basically one where you threw a frisbie to your dog in the middle of a ice lake and now you need to go get it,<br>
-your dog is a lazy one. You can move to 9 places and the actions are left, right, up and down. <br>
-There's 3 types of blocks, the blocks in which you can stand on, those that has a hole and it's game over if you go on them and <br>
-the last one where the frisbie is.
+<p> A história do jogo é que você foi brincar com o seu cachorro e arremesou o frisbie no meio de um lago congelado e o seu cachorro não está muito afim de ir pegar, então a sua missão é a recuperação do mesmo.<br>
+O jogo é composto de 16 blocos, onde temos 3 tipos de blocos. O primeiro é o qual você pode andar, o segundo são os buracos que se você pisar, o episódio acaba, e o último onde o frisbie se encontra. <br>
 </p>
 
 
@@ -554,23 +556,23 @@ Note que como a recompensa é maior que 30 o episódio acabou. Como as portas te
 
 Por fim, no último episódio o computador vai ir até a Porta 3. <br>
 
-Para chegar até la, suas ações serão: $\rightarrow, \downarrow, \downarrow, \rightarrow$.
+Para chegar até la, suas ações serão: $\rightarrow \ \downarrow \ \downarrow \ \rightarrow$.
 
 Logo, temos os seguintes Q-Valores. <br>
 
  <ol>
- <li>$Q(Estado 1, \rightarrow) = 27.8$ </li>
- <li> $Q(Estado 2, \downarrow) = -0.8$</li>
- <li> $Q(Estado 5, \downarrow) = -0.8$</li>
- <li> $Q(Estado 8, \rightarrow) = 24$</li>
- <li> $Q({\color{pink}Porta 3}, \leftarrow) =  23.2 $</li></li>
- <li> $Q(Estado 8, \rightarrow) = 51.8$</li>
+ <li>$Q(\textrm{Estado 1}, \rightarrow) = 27.8$ </li>
+ <li> $Q(\textrm{Estado 2}, \downarrow) = -0.8$</li>
+ <li> $Q(\textrm{Estado 5}, \downarrow) = -0.8$</li>
+ <li> $Q(\textrm{Estado 8}, \rightarrow) = 24$</li>
+ <li> $Q(\textrm{{\color{pink}Porta 3}}, \leftarrow) =  23.2 $</li></li>
+ <li> $Q(\textrm{Estado 8}, \rightarrow) = 51.8$</li>
   </ol>
   
  Como a nossa recompensa pasou de 30 o episódio terminou. A Q-Tabela está dessa forma:
   
  <div align="center">
- <img align="center"  height = 400 width = 400 src=" https://github.com/MateusBalotin/IC/blob/main/images/a%C3%A7%C3%B5es-3.png"> 
+ <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/a%C3%A7%C3%B5es-3.png"> 
 </div>
 
  
