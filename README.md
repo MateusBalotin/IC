@@ -259,7 +259,7 @@ O jogo funciona assim: <br>
 | Estados | $${\color{red}-1}$$ |
 | $${\color{yellow} \textrm{Porta 1}}$$ | $${\color{Green}-10}$$ |
 | $${\color{red}\textrm{Porta 2}}$$ | $${\color{Green}+10} $$|
-| $${\color{pimk}\textrm{Porta 3}}$$ | $${\color{Red}+30}$$|
+| $${\color{pink}\textrm{Porta 3}}$$ | $${\color{Red}+30}$$|
 
 <br>
 
@@ -540,31 +540,31 @@ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 1}\rightarrow)} = -0.
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 2}\rightarrow)} = 8$$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Porta 2}\leftarrow)} = 7.2$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{{\color{yellow}Porta 2}}\leftarrow)} = 7.2$$
 
 De forma similiar ao anterior, o computador ficará voltando para a Porta 2 até o episódio acabar. <br>
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 2}\rightarrow)} = 16.8$$
 
-$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Porta 2}\leftarrow)} = 17.4$$
+$$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{{\color{yellow}Porta 2}}\leftarrow)} = 17.4$$
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 2}\rightarrow)} = 28.8$$
 
 Note que como a recompensa é maior que 30 o episódio acabou. Como as portas tem a mesma recompensa e a distância até elas é a mesma, os resultados foram iguais. <br>
 
-Por fim, no último episódio o computador vai ir até a porta 3. <br>
+Por fim, no último episódio o computador vai ir até a Porta 3. <br>
 
 Para chegar até la, suas ações serão: $\rightarrow, \downarrow, \downarrow, \rightarrow$.
 
 Logo, temos os seguintes Q-Valores. <br>
 
  <ol>
- <li>Q(Estado 1, \rightarrow) = 27.8 </li>
- <li> Q(Estado 2, \downarrow) = -0.8</li>
- <li> Q(Estado 5, \downarrow) = -0.8</li>
- <li> Q(Estado 8, \rightarrow) = 24</li>
- <li> Q(Porta 3, \leftarrow) =  23.2 </li></li>
- <li> Q(Estado 8, \rightarrow) = 51.8</li>
+ <li>$Q(Estado 1, \rightarrow) = 27.8$ </li>
+ <li> $Q(Estado 2, \downarrow) = -0.8$</li>
+ <li> $Q(Estado 5, \downarrow) = -0.8$</li>
+ <li> $Q(Estado 8, \rightarrow) = 24$</li>
+ <li> $Q({\color{pink}Porta 3}, \leftarrow) =  23.2 $</li></li>
+ <li> $Q(Estado 8, \rightarrow) = 51.8$</li>
   </ol>
   
  Como a nossa recompensa pasou de 30 o episódio terminou. A Q-Tabela está dessa forma:
