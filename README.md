@@ -117,7 +117,7 @@ $$\large \textbf{Qual a probablidade de um agente tomar alguma ação em algum e
  
  As funções valores vem responder a seguinte pergunta: <br>
  
- $$\textbf{Quão bom é uma certa ação ou estado para o agente}$$<br>
+ $$\large \textbf{Quão bom é uma certa ação ou estado para o agente}$$<br>
  
 Com essa respostas podemos dar sentido a política. Afinal, se sabemos quão bom é uma certa ação ou estado para o agente, podemos decidir sempre ir pelo caminho que <b>maximizamos</b> a nossa recompensa. No final, é exatamente isso que vamos fazer!! <br>
  
@@ -183,7 +183,7 @@ De uma forma natural, podemos definir a política ótima $\large \pi$ olhando o 
  
    Lembre-se que a nossa função $\large v_{\pi}$ volta o retorno esperado quando começamos no estado <b>s</b> e seguimos a política <b>&pi;</b>.<br> Simplesmente chamamos de política ótima aquela que é maior ou igual a todas as outras políticas.
  </p>
- <h2>$\large {\color{OrangeRed}\text{Função valor-estado ótima}}$</h2>
+ <h2>{\color{OrangeRed}\text{Função valor-estado ótima}}$</h2>
  <p>
  Vamos pegar o máximo de todas as nossas funções valor-ação, <b>v<sub>&pi;</sub>(s)</b>, e esse será a nossa função ótima:<br><br>
  
@@ -193,7 +193,7 @@ De uma forma natural, podemos definir a política ótima $\large \pi$ olhando o 
  
  </p>
   
- <h2>$\large {\color{Goldenrod} \text{Função valor-ação ótima}}$</h2> 
+ <h2>${\color{Goldenrod} \text{Função valor-ação ótima}}$</h2> 
  
  
  <p>
