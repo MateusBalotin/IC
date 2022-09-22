@@ -111,7 +111,7 @@ $$\large \textbf{Qual a probablidade de um agente tomar alguma ação em algum e
  Para isso, vamos inserir um conceito que da mais sentindo a política, <b> funções-valores. </b> <br>
  
  </p>
- <h2 align="center"> $$\textrm{Função {\color{ForestGreen}valor-ação}} e {\color{BurntOrange}valor-estado}}$$</h2>
+ <h2 align="center"> $$\textrm{Função {\color{ForestGreen}valor-ação} e {\color{BurntOrange}valor-estado}}$$</h2>
  
  <p>
  
