@@ -117,7 +117,7 @@ $$\large \textbf{Qual a probablidade de um agente tomar alguma ação em algum e
  
  As funções valores vem responder a seguinte pergunta: <br>
  
- $$\large \textbf{Quão bom é uma certa ação ou estado para o agente}$$<br>
+ $$\large \textbf{Quão bom é uma certa ação ou estado para o agente?}$$<br>
  
 Com essa respostas podemos dar sentido a política. Afinal, se sabemos quão bom é uma certa ação ou estado para o agente, podemos decidir sempre ir pelo caminho que <b>maximizamos</b> a nossa recompensa. No final, é exatamente isso que vamos fazer!! <br>
  
