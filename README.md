@@ -69,7 +69,7 @@ De uma forma mais formal, definimos o <b> recompensa esperada </b> como <br>
 
 $$ {\color{Violet}G_{t}} = R + R_{1} + R_{2} + ... + R_{t}$$
 
-para um tempo t, onde $R_{i}$,$ i = 1, 2, ..., t$ é a recompensa ganha em cada t. <br>
+para um tempo t, onde $R_{i}, \ i = 1, 2, ..., t$ é a recompensa ganha em cada t. <br>
 
 Note que o nosso T, o número de recompensas possíveis, é finito. Porém, imagine um jogo de xadrez ou um cúbo de Rubick, apesar das possibilidades serem finitas elas são gigantescas. Tão grandes que nenhum computador atual consegue computar todas as possibilidades. <br>
 
