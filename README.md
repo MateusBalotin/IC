@@ -1,5 +1,5 @@
 
-<h1> Projeto de Iniciação Científica </h1>
+<h1 align="center"> Projeto de Iniciação Científica </h1>
 <p> 
  
 Esse repositório é um relatório da minha Iniciação Científica com o professor Lucas G. Pedroso com o intuito de prover uma introdução ao Aprendizado por Reforço.
@@ -9,7 +9,7 @@ Nesse projeto é apresentado o código para o treinamento de 2 jogos: Cartpole e
 
 <h1> CartPole </h1>
 
-Cartpole é um jogo presente no enviroment gym, no qual é possível controlar somente 2 teclas, esquerda e direita.O jogo é composto de um carrino e uma vara em cima do mesmo, a qual pende o lado contrário do movimento.  <br>
+Cartpole é um jogo presente no enviroment gym, no qual é possível controlar somente 2 teclas, esquerda e direita. O jogo é composto de um carrinho e uma vara em cima do mesmo, a qual pende o lado contrário do movimento.  <br>
 
 O objetivo do jogo é não deixar a vara passar de um certo grau e não sair muito longe do centro da tela. <br>
 
@@ -21,7 +21,8 @@ Para o treinamento do mesmo, foi usado uma técnica bem comum, a DQN - Double Q-
 <p> O propósito desse código é monstrar os conceitos básicos do Q-Learning e um exemplo de uma Q-Table.</p>
 
 <p> A história do jogo é que você foi brincar com o seu cachorro e arremesou o frisbie no meio de um lago congelado e o seu cachorro não está muito afim de ir pegar, então a sua missão é a recuperação do mesmo.<br>
-O jogo é composto de 16 blocos, onde temos 3 tipos de blocos. O primeiro é o qual você pode andar, o segundo são os buracos que se você pisar, o episódio acaba, e o último onde o frisbie se encontra. <br>
+ 
+O jogo é composto de 16 blocos, onde temos 3 tipos de blocos. O primeiro é o qual você pode andar, o segundo são os buracos que se você pisar, você perde e o último onde o frisbie se encontra. <br>
 </p>
 
 
@@ -34,7 +35,7 @@ As aplicações do aprendizado por reforço são variadas, desde de jogos como M
 
 <h1 align="center"> Markov Decision Process – MDP’S </h1>
 
-<p> Um dos componentes principais do Aprendizado por Reforço são os processos de decisão de Markov:</p>
+<p> Um dos componentes principais do Aprendizado por Reforço são os processos de decisão de Markov, que são definidos por 5 partes principais:</p>
 
 <ul> 
 <li> Ambiente</li>
@@ -46,7 +47,7 @@ As aplicações do aprendizado por reforço são variadas, desde de jogos como M
 
 <p>Vamos entender isso com um exemplo. Imagine que você está jogando xadrez com um amigo. <br>
 
-<b>Ambiente</b> &rarr; É o conjunto de todas as regras e ações (jogadas) que você tem no xadrez. <br> 
+<b>Ambiente</b> &rarr; É o conjunto de todas as regras, jogadas (ações) e lugares onde você pode colocar as peças (estado).<br> 
 <b>Agente </b>  &rarr; É quem interage com o ambiente e toma ações, você ou um algoritmo. <br> 
 <b>Estados</b>   &rarr; São os lugares possíveis em que o agente pode estar. Por exemplo, no jogo de xadrez temos um tabuleiro com 64 casas, onde casa representa um estado. Em outros jogos, cada pixel pode representar um estado diferente. <br> 
 <b>Ações </b> &rarr; É o ato de jogar, por exemplo mexer um peão ou um cavalo. <br> 
@@ -55,21 +56,19 @@ As aplicações do aprendizado por reforço são variadas, desde de jogos como M
 A recompensa é exatamente isso, é o petisco que nós decidimos para o algoritmo para que ele alcance algum objetivo. <br>
  
 </p>
-<h2> Objetivo </h2>
+<h2 align="center"> Objetivo </h2>
 
 Mas qual o objetivo do agente? Uma resposta razoável seria imaginar que ele tentaria maximizar a sua recompensa, afinal essa é a métrica que estamos usando para ele chegar no nosso objetivo. <br> 
 
 De fato, vamos fazer isso, só que com uma leve mudança, vamos maximizar a <b>recompensa cumulativa. </b> <br>
 
-O motivo disso é que a recompensa é um caminho para um objetivo, é um processo que no fim chegamos no lugar desejado. Logo, não queremos maximizar só a recompensa <b>imediata</b>, um petisquinho que demos para o pet, mas sim a recompensa <b>cumulativa</b> até o fim, todos os petisquinhos até que o pet dê a patinha toda vez.<br>
+O motivo disso é que a recompensa é um caminho para um objetivo, é um processo que no fim chegamos no lugar desejado. Logo, não queremos maximizar só a recompensa <b>imediata</b>, um petisquinho que damos para o pet, mas sim a recompensa <b>cumulativa</b> até o fim, todos os petisquinhos até que o pet dê a patinha toda vez.<br>
 
-Podemos definir esse conceito de uma maneira mais formal e temos o <b> retorno esperado. </b> <br>
+Podemos definir esse conceito de uma maneira mais formal e temos o <b> retorno esperado.</b> Matematicamente podemos escrever como <br>
 
-De uma forma mais formal, definimos o <b> recompensa esperada </b> como <br>
+$$\large {\color{Violet}G_{t}} = R + R_{1} + R_{2} + ... + R_{T}$$
 
-$$ {\color{Violet}G_{t}} = R + R_{1} + R_{2} + ... + R_{t}$$
-
-para um tempo t, onde $R_{i}, \ i = 1, 2, ..., t$ é a recompensa ganha em cada t. <br>
+onde $R_{i}, \ i = 1, 2, ..., T$ é a recompensa ganha em cada tempo <b>T</b>. <br>
 
 Note que o nosso T, o número de recompensas possíveis, é finito. Porém, imagine um jogo de xadrez ou um cúbo de Rubick, apesar das possibilidades serem finitas elas são gigantescas. Tão grandes que nenhum computador atual consegue computar todas as possibilidades. <br>
 
@@ -77,26 +76,27 @@ Então, apesar do nosso número de recompensa, T, ser finito, ele acaba sendo in
 
 Como resolvemos isso? <br>
 
-A ideia é bem simples, basta adicionar um termo, &\gamma$, que reduz os valores conforme T vai crescendo. Com isso, a partir de um certo ponto o T não vai somar nada significativo a nossa soma e vai sumir. <br>
+A ideia é bem simples, basta adicionar um termo, $\gamma$, que reduz os valores conforme T vai crescendo. Com isso, a partir de um certo ponto o T não vai somar nada significativo a nossa soma. <br>
 
 Com isso em mente, temos agora o <b> retorno esperado descontado </b>, que pode ser definido formalmente da seguinte forma <br>
 
-$$ {\color{Violet}G_{t}}  = R + \gamma \cdot R_{1} + \gamma^{2} \cdot R_{2} + ... $$
-$$ {\color{Violet}G_{t}} = \sum_{k=0}^\infty \gamma^{k} R_{t+k+1} } $$
+$$\large {\color{Violet}G_{t}}  = R + \gamma \cdot R_{1} + \gamma^{2} \cdot R_{2} + ... $$
 
-Podemos ver matematicamente que quando o nosso &gamma é &lt; 1$, apesar da soma ser infinita, o retorno sera finito, pois essa soma converge.
+$$\large {\color{Violet}G_{t}} = \sum_{k=0}^\infty \gamma^{k} R_{t+k+1} } $$
+
+Podemos ver matematicamente que quando o nosso &\gamma é < 1$, apesar da soma ser infinita, o retorno sera finito, pois essa soma converge.
 
 <h2> Voltando as MDP'S </h2>
  
 <p> Outro questionamento que podemos fazer agora é pensar em como o agente vai tomar uma decisão. Qual critério ele usa para agir? e como o algoritmo calcula esse critério? <br>
  
- Para isso vamos introduzir um conceito super importante: <u> Política. </u> <br>
+ Para isso vamos introduzir um conceito super importante: <b> Política. </b> <br>
  
- <h2> Política </h2>
+ <h2 align="center"> Política </h2>
  
- A política vem responder a seguinte perguntas <br> 
+ A política vem responder a seguinte pergunta <br> 
  
- <b align="center"> Qual a probablidade de um agente tomar alguma ação em algum estado?</b> <br>
+$$\large \textbf{Qual a probablidade de um agente tomar alguma ação em algum estado?}<br>
  
  Agora sim, temos um métrica para o nosso agente. Porém, como o algoritmo calcula essa probabilidade? <br>
  
@@ -111,7 +111,7 @@ Podemos ver matematicamente que quando o nosso &gamma é &lt; 1$, apesar da soma
  Para isso, vamos inserir um conceito que da mais sentindo a política, <b> funções-valores. </b> <br>
  
  </p>
- <h2> Função valor-ação e valor-estado </h2>
+ <h2 align="center"> Função {\color{ForestGreen}valor-ação} e {\color{BurntOrange}valor-estado} </h2>
  
  <p>
  
@@ -128,7 +128,7 @@ Vamos explorar como são definidas essas funções valores!
 <h3> $\large{\color{BurntOrange} \text{Função valor-estado}}$</h3>
  
  <p>
-A função valor estado para política a <b>&pi;</b>, denotada como $\large {\color{BurntOrange} v_{\pi}(s)}$, nos diz quão bom é um certo estado <b>s</b> para o nosso agente, quando o mesmo segue a política <b>&pi;</b>. Ou seja, nos retorna um valor de um estado sobre a política <b>&\pi$.</b> <br>
+A função valor estado para política a <b>&pi;</b>, denotada como $\large {\color{BurntOrange} v_{\pi}(s)}$, nos diz quão bom é um certo estado <b>s</b> para o nosso agente, quando o mesmo segue a política <b>&pi;</b>. Ou seja, nos retorna um valor de um estado sobre a política <b>$\pi$.</b> <br>
 
 Formalmente, o valor de um estado sobre a política <b>&pi;</b> é o <b>retorno esperado</b> de quando começamos no estado <b>s</b> no tempo <b>t</b> e depois seguimos a política <b>&pi;</b>. Matematicamente definimos $\large {\color{BurntOrange} v_{\pi}(s)}$ como: <br>
 
@@ -145,7 +145,7 @@ De forma similiar podemos definir a Função valor-ação.
 <h3> $\large{\color{ForestGreen} \text{Função valor-ação}}$</h3>
 <p> 
 
- A Função valor-ação para a política <b>&pi;</b>, denotada como <b>q<sub>&pi;</sub></b>, nos diz quão bom é para o agente tomar uma certa ação em um certo estado seguindo a política <b>&pi;</b>. Analogamente ao caso anterior, isso nos retorna o valor de uma ação sobre a política <b>&pi</b>;.<br>
+ A Função valor-ação para a política <b>&pi;</b>, denotada como <b>q<sub>&pi;</sub></b>, nos diz quão bom é para o agente tomar uma certa ação em um certo estado seguindo a política <b>&pi;</b>. Analogamente ao caso anterior, isso nos retorna o valor de uma ação sobre a política <b>$\pi$</b>.<br>
  
  Formalmente, podemos definir o valor de uma ação <b>a</b> em um estado <b>s</b> sobre a política <b>&pi;</b> como o <b> retorno esperado </b> de quando começamos no estado <b>s</b> no tempo <b>t</b>, tomando uma ação <b>a</b> e seguindo a política <b>&pi;</b>. Matematicamente podemos definir <b>q<sub>&pi;</sub>(s,a)</b> como: <br>
  
@@ -169,7 +169,7 @@ Agora que temos as nossas métricas, um mapa que contém as probabilidades de qu
  
  </p>
  
- <h2> Otimização </h2>
+ <h2 align="center"> Otimização </h2>
  <p>
  
  Algo natural após definirmos as métricas pela qual o nosso agente vai tomar decisões, é tentar achar a melhor fórmula, ou seja, achar as políticas e funções valores ótimas tal que o agente tem a maior recompensa possível.
@@ -224,7 +224,7 @@ Com $\large {\color{CornflowerBlue} T} = {\color{CornflowerBlue}\gamma \max_{a'}
  
 </p> 
  
- <h1> Q-Learning </h1>
+ <h1 align="center"> Q-Learning </h1>
  <p>
  
  Com tudo isso que vimos, temos que uma forma de achar a política ótima é achar os melhores Q-Valores para cada par de estado-ação, ou seja, o maior retorno esperado descontado para qualquer par de estado-ação. <br>
