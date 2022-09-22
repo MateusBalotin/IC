@@ -1,9 +1,10 @@
 
 <h1> Projeto de Iniciação Científica </h1>
+<p> 
+ 
 Esse repositório é um relatório da minha Iniciação Científica com o professor Lucas G. Pedroso com o intuito de prover uma introdução ao Aprendizado por Reforço.
-<h1> Cartpole </h1>
-
-<p> Nesse projeto é apresentado o código para o treinamento de 2 jogos: Cartpole e Freezing Lake.<br>
+ 
+Nesse projeto é apresentado o código para o treinamento de 2 jogos: Cartpole e Freezing Lake.<br>
  </p>
 
 <h1> CartPole </h1>
@@ -52,9 +53,8 @@ As aplicações do aprendizado por reforço são variadas, desde de jogos como M
 <b>Recompensa</b> &rarr; É a forma de condicionar o agente a chegar em um certo objetivo. Imagine que você tem um pet e você quer que ele te dê a patinha toda vez que você der a mão para ele. Uma das formas de fazer isso, é que toda vez que ele da a patinha, você da um petisco para ele, ou seja, você esta condicionando ele para um certo objetivo que é dar a patinha toda vez que você estender a mão para ele. <br>
  
 A recompensa é exatamente isso, é o petisco que nós decidimos para o algoritmo para que ele alcance algum objetivo. <br>
+ 
 </p>
-
-
 <h2> Objetivo </h2>
 
 Mas qual o objetivo do agente? Uma resposta razoável seria imaginar que ele tentaria maximizar a sua recompensa, afinal essa é a métrica que estamos usando para ele chegar no nosso objetivo. <br> 
