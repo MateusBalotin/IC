@@ -56,7 +56,7 @@ As aplicações do aprendizado por reforço são variadas, desde de jogos como M
 A recompensa é exatamente isso, é o petisco que nós decidimos para o algoritmo para que ele alcance algum objetivo. <br>
  
 </p>
-<h2 align="center"> Objetivo </h2>
+<h1 align="center"> Objetivo </h1>
 
 Mas qual o objetivo do agente? Uma resposta razoável seria imaginar que ele tentaria maximizar a sua recompensa, afinal essa é a métrica que estamos usando para ele chegar no nosso objetivo. <br> 
 
@@ -92,7 +92,7 @@ Podemos ver matematicamente que quando o nosso &\gamma é < 1$, apesar da soma s
  
  Para isso vamos introduzir um conceito super importante: <b> Política. </b> <br>
  
- <h2 align="center"> Política </h2>
+ <h1 align="center"> Política </h1>
  
  A política vem responder a seguinte pergunta <br> 
  
@@ -111,13 +111,13 @@ $$\large \textbf{Qual a probablidade de um agente tomar alguma ação em algum e
  Para isso, vamos inserir um conceito que da mais sentindo a política, <b> funções-valores. </b> <br>
  
  </p>
- <h2 align="center"> $\textrm{Função {\color{ForestGreen}valor-ação} e {\color{BurntOrange}valor-estado}}$</h2>
+ <h1 align="center"> $\textrm{Função {\color{ForestGreen}valor-ação} e {\color{BurntOrange}valor-estado}}$</h1>
  
  <p>
  
  As funções valores vem responder a seguinte pergunta: <br>
  
- <b align="center"> Quão bom é uma certa ação ou estado para o agente.</b> <br>
+ $$\textbf{Quão bom é uma certa ação ou estado para o agente}$$<br>
  
 Com essa respostas podemos dar sentido a política. Afinal, se sabemos quão bom é uma certa ação ou estado para o agente, podemos decidir sempre ir pelo caminho que <b>maximizamos</b> a nossa recompensa. No final, é exatamente isso que vamos fazer!! <br>
  
@@ -125,7 +125,7 @@ Vamos explorar como são definidas essas funções valores!
  
  
 </p>
-<h3> $\large{\color{BurntOrange} \text{Função valor-estado}}$</h3>
+<h2> $\large{\color{BurntOrange} \text{Função valor-estado}}$</h2>
  
  <p>
 A função valor estado para política a <b>&pi;</b>, denotada como $\large {\color{BurntOrange} v_{\pi}(s)}$, nos diz quão bom é um certo estado <b>s</b> para o nosso agente, quando o mesmo segue a política <b>&pi;</b>. Ou seja, nos retorna um valor de um estado sobre a política $\pi$. <br>
@@ -142,7 +142,7 @@ De forma similiar podemos definir a Função valor-ação.
 
 
 
-<h3> $\large{\color{ForestGreen} \text{Função valor-ação}}$</h3>
+<h2> $\large{\color{ForestGreen} \text{Função valor-ação}}$</h2>
 <p> 
 
  A Função valor-ação para a política <b>&pi;</b>, denotada como <b>q<sub>&pi;</sub></b>, nos diz quão bom é para o agente tomar uma certa ação em um certo estado seguindo a política <b>&pi;</b>. Analogamente ao caso anterior, isso nos retorna o valor de uma ação sobre a política $\pi$.<br>
@@ -169,13 +169,13 @@ Agora que temos as nossas métricas, um mapa que contém as probabilidades de qu
  
  </p>
  
- <h2 align="center"> Otimização </h2>
+ <h1 align="center"> Otimização </h1>
  <p>
  
  Algo natural após definirmos as métricas pela qual o nosso agente vai tomar decisões, é tentar achar a melhor fórmula, ou seja, achar as políticas e funções valores ótimas tal que o agente tem a maior recompensa possível.
  
  </p>
-<h3> <b>Política ótima</b></h3>
+<h2> <b>Política ótima</b></h2>
  <p>
 De uma forma natural, podemos definir a política ótima $\large \pi$ olhando o retorno esperado. Ou seja, $\large \pi$ $\large\ge$ $\large \pi'$ se o <b>retorno esperado</b> de $\large \pi$ é maior que o <b> retorno esperado</b> de $\large \pi'$  para todos os estados $s \in S$. Matematicamente <br><br>
  
@@ -183,7 +183,7 @@ De uma forma natural, podemos definir a política ótima $\large \pi$ olhando o 
  
    Lembre-se que a nossa função $\large v_{\pi}$ volta o retorno esperado quando começamos no estado <b>s</b> e seguimos a política <b>&pi;</b>.<br> Simplesmente chamamos de política ótima aquela que é maior ou igual a todas as outras políticas.
  </p>
- <h3>$\large {\color{OrangeRed}\text{Função valor-estado ótima}}$</h3>
+ <h2>$\large {\color{OrangeRed}\text{Função valor-estado ótima}}$</h2>
  <p>
  Vamos pegar o máximo de todas as nossas funções valor-ação, <b>v<sub>&pi;</sub>(s)</b>, e esse será a nossa função ótima:<br><br>
  
@@ -193,7 +193,7 @@ De uma forma natural, podemos definir a política ótima $\large \pi$ olhando o 
  
  </p>
   
- <h3>$\large {\color{Goldenrod} \text{Função valor-ação ótima}}$</h3> 
+ <h2>$\large {\color{Goldenrod} \text{Função valor-ação ótima}}$</h2> 
  
  
  <p>
