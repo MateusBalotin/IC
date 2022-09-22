@@ -65,7 +65,7 @@ O motivo disso é que a recompensa é um caminho para um objetivo, é um process
 
 Podemos definir esse conceito de uma maneira mais formal e temos o <b> retorno esperado. </b> <br>
 
-De uma forma mais formal, definimos o <b> recompensa esperaro <b> como <br>
+De uma forma mais formal, definimos o <b> recompensa esperada <\b> como <br>
 
 $$ {\color{Violet}G_{t}} = R + R_{1} + R_{2} + ... + R_{t}$$
 
