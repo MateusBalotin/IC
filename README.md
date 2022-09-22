@@ -111,7 +111,7 @@ $$\large \textbf{Qual a probablidade de um agente tomar alguma ação em algum e
  Para isso, vamos inserir um conceito que da mais sentindo a política, <b> funções-valores. </b> <br>
  
  </p>
- <h2 align="center"> $$\textrm{Função {\color{ForestGreen}valor-ação} e {\color{BurntOrange}valor-estado}}$$</h2>
+ <h2 align="center"> $\textrm{Função {\color{ForestGreen}valor-ação} e {\color{BurntOrange}valor-estado}}$</h2>
  
  <p>
  
@@ -128,7 +128,7 @@ Vamos explorar como são definidas essas funções valores!
 <h3> $\large{\color{BurntOrange} \text{Função valor-estado}}$</h3>
  
  <p>
-A função valor estado para política a <b>&pi;</b>, denotada como $\large {\color{BurntOrange} v_{\pi}(s)}$, nos diz quão bom é um certo estado <b>s</b> para o nosso agente, quando o mesmo segue a política <b>&pi;</b>. Ou seja, nos retorna um valor de um estado sobre a política <b>$\pi$.</b> <br>
+A função valor estado para política a <b>&pi;</b>, denotada como $\large {\color{BurntOrange} v_{\pi}(s)}$, nos diz quão bom é um certo estado <b>s</b> para o nosso agente, quando o mesmo segue a política <b>&pi;</b>. Ou seja, nos retorna um valor de um estado sobre a política $\pi$. <br>
 
 Formalmente, o valor de um estado sobre a política <b>&pi;</b> é o <b>retorno esperado</b> de quando começamos no estado <b>s</b> no tempo <b>t</b> e depois seguimos a política <b>&pi;</b>. Matematicamente definimos $\large {\color{BurntOrange} v_{\pi}(s)}$ como: <br>
 
@@ -145,7 +145,7 @@ De forma similiar podemos definir a Função valor-ação.
 <h3> $\large{\color{ForestGreen} \text{Função valor-ação}}$</h3>
 <p> 
 
- A Função valor-ação para a política <b>&pi;</b>, denotada como <b>q<sub>&pi;</sub></b>, nos diz quão bom é para o agente tomar uma certa ação em um certo estado seguindo a política <b>&pi;</b>. Analogamente ao caso anterior, isso nos retorna o valor de uma ação sobre a política <b>$\pi$</b>.<br>
+ A Função valor-ação para a política <b>&pi;</b>, denotada como <b>q<sub>&pi;</sub></b>, nos diz quão bom é para o agente tomar uma certa ação em um certo estado seguindo a política <b>&pi;</b>. Analogamente ao caso anterior, isso nos retorna o valor de uma ação sobre a política $\pi$.<br>
  
  Formalmente, podemos definir o valor de uma ação <b>a</b> em um estado <b>s</b> sobre a política <b>&pi;</b> como o <b> retorno esperado </b> de quando começamos no estado <b>s</b> no tempo <b>t</b>, tomando uma ação <b>a</b> e seguindo a política <b>&pi;</b>. Matematicamente podemos definir <b>q<sub>&pi;</sub>(s,a)</b> como: <br>
  
@@ -309,7 +309,7 @@ Pronto! Agora só falta o computador começar a jogar e conforme ele for jogando
  
  </p>
  
- <h2> ${\color{Fuchsia}\textrm{Exploration}}$ vs  ${\color{Emerald}\textrm{Exploitation}}$</h2>
+ <h2 align="center"> ${\color{Fuchsia}\textrm{Exploration}}$ vs  ${\color{Emerald}\textrm{Exploitation}}$</h2>
 <p>
  
  Como você pode imaginar, ${\color{Fuchsia}\textrm{Exploration}}$, é o ato de explorar o ambiente, ou seja, não vamos nos preocupar com os Q-Valores ao tomarmos uma ação. <br>
