@@ -45,15 +45,13 @@ As aplicações do aprendizado por reforço são variadas, desde de jogos como M
 
 <p>Vamos entender isso com um exemplo. Imagine que você está jogando xadrez com um amigo. <br>
 
-<b>Ambiente</b> &rarr; É o conjunto de todas as regras e ações (jogadas) que você tem no xadrez <br> 
-<b>Agente </b>  &rarr; É quem interage com o ambiente e toma ações (você ou um algoritmo). <br> 
-<b>Estado</b>   &rarr; É onde o agente se encontra para tomar ações. Por exemplo, quando o jogo de xadrez começa quem joga primeiro são quem está do lado das peças pretas. Logo, o estado em que o agente se encontra, a pessoa que vai jogar, é o estado inicial e ela pode fazer as ações permitidas. <br> 
-<b>Ação</b> &rarr; É o ato de jogar. No nosso caso, é mover uma peça, seja um peão, cavalo. <br> 
-<b>Recompensa</b> &rarr; É a forma de condicionar o agente a chegar em um certo objetivo. <br> 
-Imagina que você tem um pet e você quer que ele te dê a patinha toda vez que você der a mão para ele. Uma das formas de fazer isso, é que toda vez que ele da a patinha, você da um petisco para ele, ou seja, você esta condicionando para um certo objetivo que é dar a patinha toda vez que você estender a mão para ele. <br>
+<b>Ambiente</b> &rarr; É o conjunto de todas as regras e ações (jogadas) que você tem no xadrez. <br> 
+<b>Agente </b>  &rarr; É quem interage com o ambiente e toma ações, você ou um algoritmo. <br> 
+<b>Estados</b>   &rarr; São os lugares possíveis em que o agente pode estar. Por exemplo, no jogo de xadrez temos um tabuleiro com 64 casas, onde casa representa um estado. Em outros jogos, cada pixel pode representar um estado diferente. <br> 
+<b>Ações </b> &rarr; É o ato de jogar, por exemplo mexer um peão ou um cavalo. <br> 
+<b>Recompensa</b> &rarr; É a forma de condicionar o agente a chegar em um certo objetivo. Imagine que você tem um pet e você quer que ele te dê a patinha toda vez que você der a mão para ele. Uma das formas de fazer isso, é que toda vez que ele da a patinha, você da um petisco para ele, ou seja, você esta condicionando ele para um certo objetivo que é dar a patinha toda vez que você estender a mão para ele. <br>
  
 A recompensa é exatamente isso, é o petisco que nós decidimos para o algoritmo para que ele alcance algum objetivo. <br>
-Por exemplo, ganhar no jogo de xadrez ou dirigir de uma forma segura em um self driving car.
 </p>
 
 
@@ -61,11 +59,17 @@ Por exemplo, ganhar no jogo de xadrez ou dirigir de uma forma segura em um self 
 
 Mas qual o objetivo do agente? Uma resposta razoável seria imaginar que ele tentaria maximizar a sua recompensa, afinal essa é a métrica que estamos usando para ele chegar no nosso objetivo. <br> 
 
-De fato, vamos fazer isso, só que com uma leve mudança, vamos maximizar a recompensa <b>cumulativa. </b> <br>
+De fato, vamos fazer isso, só que com uma leve mudança, vamos maximizar a <b>recompensa cumulativa. </b> <br>
 
 O motivo disso é que a recompensa é um caminho para um objetivo, é um processo que no fim chegamos no lugar desejado. Logo, não queremos maximizar só a recompensa <b>imediata</b>, um petisquinho que demos para o pet, mas sim a recompensa <b>cumulativa</b> até o fim, todos os petisquinhos até que o pet dê a patinha toda vez.<br>
 
-Podemos definir esse conceito de uma maneira mais formal e temos o <b> retorno esperado </b>. <br>
+Podemos definir esse conceito de uma maneira mais formal e temos o <b> retorno esperado. </b> <br>
+
+De uma forma mais formal, definimos o <b> recompensa esperaro <b> como <br>
+
+$$ {\color{Violet}G_{t}} = R + R_{1} + R_{2} + ... + R_{t}$$
+
+para um tempo t, onde $R_{i}, i = 1, 2, ..., t$ é a recompensa ganha em cada t. <br>
 
 Note que o nosso T, o número de recompensas possíveis, é finito. Porém, imagine um jogo de xadrez ou um cúbo de Rubick, apesar das possibilidades serem finitas elas são gigantescas. Tão grandes que nenhum computador atual consegue computar todas as possibilidades. <br>
 
@@ -73,15 +77,18 @@ Então, apesar do nosso número de recompensa, T, ser finito, ele acaba sendo in
 
 Como resolvemos isso? <br>
 
-A ideia é bem simples, basta adicionar um termo, &gamma, que reduz os valores conforme T vai crescendo. Com isso, a partir de um certo ponto o T não vai somar nada significativo a nossa soma e vai sumir. <br>
+A ideia é bem simples, basta adicionar um termo, &\gamma$, que reduz os valores conforme T vai crescendo. Com isso, a partir de um certo ponto o T não vai somar nada significativo a nossa soma e vai sumir. <br>
 
-Com isso em mente, temos agora o <b> retorno esperado descontado </b>. <br>
+Com isso em mente, temos agora o <b> retorno esperado descontado </b>, que pode ser definido formalmente da seguinte forma <br>
 
-Podemos ver matematicamente que quando o nosso &gamma é &lt; 1, apesar da soma ser infinita, o retorno sera finito, pois essa soma converge.
+$$ {\color{Violet}G_{t}}  = R + \gamma \cdot R_{1} + \gamma^{2} \cdot R_{2} + ... $$
+$$ {\color{Violet}G_{t}} = \sum_{k=0}^\infty \gamma^{k} R_{t+k+1} } $$
+
+Podemos ver matematicamente que quando o nosso &gamma é &lt; 1$, apesar da soma ser infinita, o retorno sera finito, pois essa soma converge.
 
 <h2> Voltando as MDP'S </h2>
  
-<p> Outro questionamento que podemos fazer agora é pensar em como o agente vai tomar uma decisão. Qual critério ele usa para agir? e como o algortimo calcula esse critério? <br>
+<p> Outro questionamento que podemos fazer agora é pensar em como o agente vai tomar uma decisão. Qual critério ele usa para agir? e como o algoritmo calcula esse critério? <br>
  
  Para isso vamos introduzir um conceito super importante: <u> Política. </u> <br>
  
@@ -99,7 +106,7 @@ Podemos ver matematicamente que quando o nosso &gamma é &lt; 1, apesar da soma 
  
  Formalmente, podemos dizer que se o agente segue a política <b>&pi;</b> no tempo <b> t </b>, então <b>&pi;(a|s)</b> é a probabilidade de <b>A<sub>t</sub></b> = <b>a</b> se <b>S<sub>t</sub></b> = <b>s</b>. Isso significa que, no tempo <b>t</b>, sobre a política <b>&pi;</b>, a probabilidade de tomar a ação <b>a</b> no estado <b>s</b> é <b>&pi;(a|s)</b>. <br>
  
- Olhando de uma forma estatísca, para cada <b>s</b> &isin; <b>S</b>, <b>&pi;</b> é uma probabilidade de distribuição sobre <b>a</b> &isin; <b>A(s)</b>. <br><br>
+ Olhando de uma forma estatísca, para cada <b>s</b> &isin; <b>S</b>, <b>&pi;</b> é uma probabilidade de distribuição sobre <b>a</b> &isin; <b>A(s)</b>. <br>
  
  Para isso, vamos inserir um conceito que da mais sentindo a política, <b> funções-valores. </b> <br>
  
@@ -121,7 +128,7 @@ Vamos explorar como são definidas essas funções valores!
 <h3> $\large{\color{BurntOrange} \text{Função valor-estado}}$</h3>
  
  <p>
-A função valor estado para política a <b>&pi;</b>, denotada como $\large {\color{BurntOrange} v_{\pi}(s)}$, nos diz quão bom é um certo estado <b>s</b> para o nosso agente, quando o mesmo segue a política <b>&pi;</b>. Ou seja, nos retorna um valor de um estado sobre a política <b>&pi;.</b> <br>
+A função valor estado para política a <b>&pi;</b>, denotada como $\large {\color{BurntOrange} v_{\pi}(s)}$, nos diz quão bom é um certo estado <b>s</b> para o nosso agente, quando o mesmo segue a política <b>&pi;</b>. Ou seja, nos retorna um valor de um estado sobre a política <b>&\pi$.</b> <br>
 
 Formalmente, o valor de um estado sobre a política <b>&pi;</b> é o <b>retorno esperado</b> de quando começamos no estado <b>s</b> no tempo <b>t</b> e depois seguimos a política <b>&pi;</b>. Matematicamente definimos $\large {\color{BurntOrange} v_{\pi}(s)}$ como: <br>
 
@@ -158,21 +165,21 @@ Opa! Encontramos algo interessante nessa nomenclatura. Uma <b>Q-Função</b> com
 
 Esses <b>Q-Valores</b> são exatamente quem vamos buscar para ter o melhor guia para o nosso agente! <br>
 
-Agora que temos as nossas métricas, um mapa que contém as probabilidades de quão bom é uma certa ação dado um certo estado para algum número de estados possíveis que podemos jogar, podemos pensar em como otimizar essa métrica. <br>
+Agora que temos as nossas métricas, um mapa que contém as probabilidades de quão bom é uma certa ação dado um certo estado, podemos pensar em como otimizar essa métrica. <br>
  
  </p>
  
  <h2> Otimização </h2>
  <p>
  
- Algo natural de se fazer agora que definimos as métricas pela qual o nosso agente vai tomar decisões, é tentar achar a melhor fórmula, ou seja, achar as políticas e funções valores ótimas tal que o meu agente tem a maior recompensa possível.
+ Algo natural após definirmos as métricas pela qual o nosso agente vai tomar decisões, é tentar achar a melhor fórmula, ou seja, achar as políticas e funções valores ótimas tal que o agente tem a maior recompensa possível.
  
  </p>
 <h3> <b>Política ótima</b></h3>
  <p>
-De uma forma natural, podemos definir a política ótima $\large pi$ olhando o retorno esperado. Ou seja, $\large \pi$ $\large\ge$ $\large \pi'$ se o <b>retorno esperado</b> de $\large \pi$ é maior que o <b> retorno esperado</b> de $\large \pi'$  para todos os estados $s \in S$. Matematicamente: <br><br>
+De uma forma natural, podemos definir a política ótima $\large \pi$ olhando o retorno esperado. Ou seja, $\large \pi$ $\large\ge$ $\large \pi'$ se o <b>retorno esperado</b> de $\large \pi$ é maior que o <b> retorno esperado</b> de $\large \pi'$  para todos os estados $s \in S$. Matematicamente <br><br>
  
- $$\large \pi \ge \pi' \ \text{se e somente se} \  v_{\pi}(s) \ge  v_{\pi'}(s) \ \text{para todo} \ s \in S$$
+ $$\large \pi \ge \pi' \ \text{se e somente se} \  v_{\pi}(s) \ge  v_{\pi'}(s) \ \text{para todo} \ s \in S.$$
  
    Lembre-se que a nossa função $\large v_{\pi}$ volta o retorno esperado quando começamos no estado <b>s</b> e seguimos a política <b>&pi;</b>.<br> Simplesmente chamamos de política ótima aquela que é maior ou igual a todas as outras políticas.
  </p>
@@ -182,7 +189,7 @@ De uma forma natural, podemos definir a política ótima $\large pi$ olhando o r
  
  $$\Large {\color{OrangeRed}v_{\ast}(s)} = \max_{\pi}\ {\color{BurntOrange} v_{\pi}(s)}$$
  
-  Isso ocorre para todo <b>s</b> &in; S. Em outras palavras, <b>v<sub>*</sub></b> gera o maior retorno esperado possível para qualquer ação <b>s</b> sobre qualquer política <b>&pi;</b>.
+  Isso ocorre para todo <b>s</b> &in; S. Em outras palavras, $v_{*}$ gera o maior retorno esperado possível para qualquer ação <b>s</b> sobre qualquer política <b>&pi;</b>.
  
  </p>
   
@@ -194,15 +201,15 @@ De uma forma natural, podemos definir a política ótima $\large pi$ olhando o r
  
   $$\Large {\color{Goldenrod} q_{\ast}(s,a)} = \max_{\pi}\ {\color{ForestGreen} q_{\pi}(s,a)}$$
   
-  para todo <b>s</b> &in; em <b>S</b> e todo <b>a</b> &in; <b>A</b>. Em outras palavras, $\large {\color{Goldenrod} q_{\ast}}$ gera o maior retorno esperado possível para qualquer par ação-estado <b>(s,a)</b> sobre qualquer política <b>&pi;</b>.<br><br>
+  para todo <b>s</b> &in; em <b>S</b> e todo <b>a</b> &in; <b>A</b>. Em outras palavras, $\large {\color{Goldenrod} q_{\ast}}$ gera o maior retorno esperado possível para qualquer par ação-estado <b>(s,a)</b> sobre qualquer política <b>&pi;</b>.<br>
  
- Como vimos antes, a função $\large{\color{ForestGreen} q_{\pi}}$ nos dá o maior retorno esperado para qualquer par de ação <b>(s,a)</b> seguindo uma política <b>&pi;</b> qualquer.<br><br>
+ Como vimos antes, a função $\large{\color{ForestGreen} q_{\pi}}$ nos dá o maior retorno esperado para qualquer par de ação <b>(s,a)</b> seguindo uma política <b>&pi;</b> qualquer.<br>
  
- A função $\large {\color{Goldenrod} q_{\ast}}$ gera o maior retorno esperado para qualquer par de estado-ação, <b>(s,a)</b>, olhando para todas as políticas <b>&pi;</b>. <br><br>
+ A função $\large {\color{Goldenrod} q_{\ast}}$ gera o maior retorno esperado para qualquer par de estado-ação, <b>(s,a)</b>, olhando para todas as políticas <b>&pi;</b>. <br>
  
- Uma propriedade sensacional que $\large {\color{Goldenrod} q_{\ast}}$ possui é que ela deve satisfazer a equação ótima de <b>Bellman</b>. <br><br>
+ Uma propriedade sensacional que $\large {\color{Goldenrod} q_{\ast}}$ possui é que ela deve satisfazer a equação ótima de <b>Bellman</b>, <br>
  
- $$\Large  {\color{Goldenrod} q_{\ast}(s,a)} = E \left[ {\color{YellowGreen}R_{t+1} } + {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') }\right]$$
+ $$\Large  {\color{Goldenrod} q_{\ast}(s,a)} = E \left[ {\color{YellowGreen}R_{t+1} } + {\color{CornflowerBlue}\gamma \max_{a'}\ q_{\ast}(s',a') }\right].$$
  
  A equação de Bellman nos diz que para qualquer par de estado-ação, <b>(s,a)</b>, no tempo <b>t</b> o  <b>retorno esperado</b>, $\large {\color{Goldenrod} q_{\ast}}$ será:
  
@@ -222,11 +229,11 @@ Com $\large {\color{CornflowerBlue} T} = {\color{CornflowerBlue}\gamma \max_{a'}
  
  Com tudo isso que vimos, temos que uma forma de achar a política ótima é achar os melhores Q-Valores para cada par de estado-ação, ou seja, o maior retorno esperado descontado para qualquer par de estado-ação. <br>
  
- Com os Q-Valores em mãos, basta atualizá-los iterativamente com a equação de Bellman até que convergam!! <br>
+ Com os Q-Valores em mãos, basta atualizá-los iterativamente até que convergam para a equação de Bellman!! <br>
  
  Mas como podemos interprar isso matematicamente e entender o conceito mais claramente? <br>
  
-Para isso imagine que o computador está jogando um jogo onde ele pode abrir 3 portas e as ações que ele pode tomar são  $$\Large {\color{white} \uparrow \ \downarrow \ \rightarrow \ \leftarrow }$$
+Para isso imagine que o computador está jogando um jogo onde os estados possíveis são quadrados em brancos e 3 portas. As ações que ele pode tomar são  $$\Large {\color{white} \uparrow \ \downarrow \ \rightarrow \ \leftarrow }$$
 
  O jogo é bem simples, o jogador vai começar em algum quadrado e se movimentará com as ações acima. <br>
  
@@ -258,7 +265,7 @@ O jogo funciona assim: <br>
 
 | Recompensas | Pontuação |
 | --- | --- |
-| Estados | $${\color{red}-1}$$ |
+| $$\textrm{Estados}$$ | $${\color{red}-1}$$ |
 | $${\color{yellow} \textrm{Porta 1}}$$ | $${\color{Green}-10}$$ |
 | $${\color{red}\textrm{Porta 2}}$$ | $${\color{Green}+10} $$|
 | $${\color{pink}\textrm{Porta 3}}$$ | $${\color{Red}+30}$$|
@@ -268,7 +275,7 @@ O jogo funciona assim: <br>
 $\large \textrm{Regras}$
 <ol>
  <li> A movimentação só poder ser feita normalmente, ou seja, se estiver no Estado 1 e fizer a ação  $\Large {\color{white} \uparrow}$ você não saí do lugar, as únicas ações possíveis para se movimentar são  $\Large {\color{white} \downarrow \ \rightarrow }$.</li>
- <li> É possível ficar entrando e saindo de uma porta. Por exemplo, no Estado 2 ao tomar a ação $\Large {\color{white} \rightarrow }$  você abre a ${\color{GreenYellow} \textrm{porta} \ 1}$. Para abrí-la novamente basta voltar uma casa e avançar, isto é, tomar as ações $\Large {\color{white}  \leftarrow \ \rightarrow}$ ou $\Large {\color{white} \downarrow \ \uparrow }$.</li>
+ <li> É possível ficar entrando e saindo de uma porta. Por exemplo, no Estado 2 ao tomar a ação $\Large {\color{white} \rightarrow }$  você abre a ${\color{GreenYellow} \textrm{Porta} \ 1}$. Para abrí-la novamente basta voltar uma casa e avançar, isto é, tomar as ações $\Large {\color{white}  \leftarrow \ \rightarrow}$ ou $\Large {\color{white} \downarrow \ \uparrow }$.</li>
  </ol>
  
 Inicialmente o agente é como um bebê que acabou de nascer, ele não sabe o objetivo do jogo, qual é a melhor ação ou quais as recompensas cada estado tem. Porém, conforme ele vai <b> explorando </b> o ambiente, ele vai descobrindo tudo isso! <br>
@@ -279,7 +286,7 @@ Para fins de organização e visualização, vamos guardar nossos Q-Valores ness
 
 
  <div align="center">
- <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/Tabela.jpg"> 
+ <img align="center"  height = 400 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/Primordial_Genesis.png"> 
  </div>
  <br>
 
@@ -287,8 +294,8 @@ Pronto! Agora só falta o computador começar a jogar e conforme ele for jogando
 
 <ol> 
   <li>Vai aprender novos Q-Valores para cada par de estado-ação. </li>
-  <li>Atualizará esses Q-Valores com a equação de Bellman. </li>
- <li> Em cada rodada vai escolher a ação com maior Q-Valor. </li>
+  <li>Atualizará esses Q-Valores de forma iterativa. </li>
+ <li> Em cada rodada vai escolher a ação com maior Q-Valor</li>
  </ol>
  
  Mas pera aí! Como que vai funcionar a primeira jogada? Afinal, no começo o computador não sabe nada sobre o jogo e todos os Q-Valores estão zerados. Como ele vai escolher o melhor Q-Valor então? <br>
@@ -306,9 +313,10 @@ Pronto! Agora só falta o computador começar a jogar e conforme ele for jogando
 <p>
  
  Como você pode imaginar, ${\color{Fuchsia}\textrm{Exploration}}$, é o ato de explorar o ambiente, ou seja, não vamos nos preocupar com os Q-Valores ao tomarmos uma ação. <br>
+ 
  Porém, ${\color{Emerald}\textrm{Exploitation}}$, é exatemente o contrário. É o ato de utilizarmos o que sabemos do ambiente para a nossa vantagem, escolher as ações baseados na recompensa máxima que teremos delas. Ou seja, escolher as ações que tem o maior Q-Valor para cada par de estado-ação. <br>
 
-Logo, no começo do jogo, o computador irá explorar o ambiente, não se preocupando com os Q-Valores. Assim, com cada jogada ele vai adquirindo novos Q-Valores para os pares de estado-ação e descobrindo as recompensas para os estados diferentes do jogo. <br>
+Logo, no começo do jogo, o computador irá explorar o ambiente, não se preocupando com os Q-Valores. Assim, com cada jogada ele vai adquirindo novos Q-Valores para os pares de estado-ação e descobrindo as recompensas para os diferentes estados do jogo. <br>
  
 Ufa! Agora faz sentido como o computador faz para jogar na primeira rodada. Mas como podemos definir essa taxa de ${\color{Fuchsia}\textrm{Exploration}}$ vs ${\color{Emerald}\textrm{Exploitation}}$ no código? <br>
  
@@ -331,7 +339,7 @@ Ufa! Agora faz sentido como o computador faz para jogar na primeira rodada. Mas 
  <h1> Voltando ao nosso jogo das Portas</h1>
  <p>
  
- Finalmente, vamos ver como seria a primeira partida. Vamos dizer que o computador tomou a ação ${\color{white} \downarrow \ }$, ou seja, foi do Estado 1 para o Estado 4. <br>
+ Finalmente, vamos ver como seria a primeira partida. Vamos dizer que o computador tomou a ação ${\color{white} \downarrow \ },$ ou seja, foi do Estado 1 para o Estado 4. <br>
  
  Como atualizamos o Q-Valor para essa jogada? <br>
  
@@ -352,7 +360,7 @@ Ufa! Agora faz sentido como o computador faz para jogar na primeira rodada. Mas 
  
  <h3> ${\color[rgb]{0.71, 0.4, 0.11}\textrm{Taxa de Aprendizado}}$ </h3>
  
- Imagine que o nos temos um Q-Valor um certo par de estado-ação que encontramos em um episódio anterior. <br>
+ Imagine que temos um Q-Valor para um certo par de estado-ação. <br>
  
  Ao voltarmos nesse estado em outro episódio, teremos um novo Q-Valor para esse mesmo par de estado-ação. Como prosseguimos? Ignoramos completamente o valor antigo ou o consideramos nos novos cálculos? <br>
  
@@ -382,7 +390,7 @@ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - \alpha) \underbrace{q(s
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - 0.8) (0) + 0.8 \left\[-1 + 0.99 \left( \max\_{a'}\ q(s',a')\right)\right]$$
 
-Quem exatamente é $\max_{a'}\ q(s',a')$?<br>
+Quem exatamente é $\max\_{a'}\ q(s',a')$?<br>
 
 Note que como todos os Q-Valores são 0, temos:
 
@@ -393,7 +401,7 @@ $$\large \max\_{a'}\ q(s',a') = \max (0, 0, 0, 0) $$
 
 $$\large \max\_{a'}\ q(s',a') = 0 $$
 
-Agora com o valor de $\max\_{a'}\ q(s',a')$ em maõs, podemos achar o nosso Q-Valor. <br>
+Agora com o valor de $\max\_{a'}\ q(s',a')$ em mãos, podemos achar o nosso Q-Valor. <br>
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (1 - 0.8) (0) + 0.8 \left\[-1 + (0.99 \cdot 0) \right]$$
 
@@ -401,7 +409,7 @@ $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = (0.2)(0) + 0.8 \cdot -(1) $$
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(s,a)} = -0.8 $$
 
-Logo, o nosso Q-Valor para o par estado-ação $\large (s,a)$ = $(\textrm{Estado 1}, {\color{white} \downarrow})$ é -0.8. <br>
+Logo, o nosso Q-Valor para o par estado-ação $\large (s,a)$ = $(\textrm{Estado 1}, {\color{white} \downarrow})$ = -0.8. <br>
 
 Agora vamos repetir esse processo até o jogo acabar ou podemos definir um limite de passos máximo que o jogador pode ter. <br>
 
@@ -411,7 +419,7 @@ A nossa Q-Tabela que guarda os nossos Q-Valores está assim no momento: <br>
 
 
  <div align="center">
- <img align="center"  height = 300 width = 400 src=https://github.com/MateusBalotin/IC/blob/main/images/A%C3%A7%C3%B5es%20(1).jpg> 
+ <img align="center"  height = 300 width = 400 src="https://github.com/MateusBalotin/IC/blob/main/images/Primordial.jpg"> 
  </div>
  <br>
  
@@ -423,7 +431,7 @@ A nossa Q-Tabela que guarda os nossos Q-Valores está assim no momento: <br>
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4},\downarrow)} = (1 - 0.8) (0) + 0.8 \left\[10 + 0.99 \left( \max\_{a'}\ q({\color{red}\textrm{Porta 2}},a')\right)\right]$$
 
-Note que $\max\_{a'}\ q(s,a') = \max\_{a'}\ q(Estado 6,a')$ vai ser 0 de forma análoga ao caso passado. <br>
+Note que $\max\_{a'}\ q(s,a') = \max\_{a'}\ q(\textrm{Estado 6},\textrm{a'})$ vai ser 0 de forma análoga ao caso passado. <br>
 
 Logo o Q-Valor para o nosso par de estado-ação $(\textrm{Estado 4}, \downarrow)$ é:
 
@@ -447,7 +455,7 @@ $$\large \max\_{a'}\ q(\textrm{Estado 4},a') = \max (0, 8, 0, 0) $$
 
 $$\large \max\_{a'}\ q(\textrm{Estado 4},a') = 8 $$
 
-Note que agora temos um valor para o par estado-ação $(\textrm{Estado 4}, \downarrow$.<br>
+Note que agora temos um valor para o par estado-ação $(\textrm{Estado 4}, \downarrow).$<br>
 
 Logo, o nosso Q-Valor para $({\color{red}\textrm{Porta 2}}, \uparrow)$ é:
 
@@ -482,7 +490,7 @@ $$\large \max\_{a'}\ q({\color{red}\textrm{Porta 2}},a') = \max (7.2, 0, 0, 0) $
 
 $$\large \max\_{a'}\ q({\color{red}\textrm{Porta 2}},a') = 7.2 $$
 
-Logo, o novo Q-Valor para o par de estado-ação (Estado 4, ${\color{white} \downarrow}$ é:
+Logo, o novo Q-Valor para o par de estado-ação (Estado 4, ${\color{white} \downarrow})$ é:
 
 $$\large{\color[rgb]{1.0, 1.0, 0.2} q^{new}(\textrm{Estado 4}, \uparrow)} = (0.2)(8) + (0.8)(10) + 7.2$$
 
@@ -534,7 +542,7 @@ A nossa Q-Tabela ficou assim: <br>
 
 Vamos repetir esse proceso para mais 2 partidas, porém com ações diferentes. <br>
 
-Imagine que agora o computador queira chegar na $\textrm{\color{yellow}Porta 1}$. Para isso, precisamos calcular o valor de $Q(Estado 1, \rightarrow)$. <br>
+Imagine que agora o computador queira chegar na $\textrm{\color{yellow}Porta 1}$. Para isso, precisamos calcular o valor de $Q(\textrm{Estado 1}, \rightarrow)$. <br>
 
 Como os cálculos são extensivos e são análogos aos já feitos, serão omitidos. <br>
 
