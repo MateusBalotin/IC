@@ -82,7 +82,7 @@ Com isso em mente, temos agora o <b> retorno esperado descontado </b>, que pode 
 
 $$\large {\color{Violet}G_{t}}  = R + \gamma \cdot R_{1} + \gamma^{2} \cdot R_{2} + ... $$
 
-$$\large {\color{Violet}G_{t}} = \sum_{k=0}^\infty \gamma^{k} R_{t+k+1} } $$
+$$\large {\color{Violet}G_{t}} = \sum_{k=0}^\infty \gamma^{k} R_{t+k+1}}$$
 
 Podemos ver matematicamente que quando o nosso &\gamma é < 1$, apesar da soma ser infinita, o retorno sera finito, pois essa soma converge.
 
